@@ -1,10 +1,10 @@
 {
-  "name": "node-typescript-boilerplate",
-  "version": "0.0.0",
-  "description": "Minimalistic boilerplate to quick-start Node.js development in TypeScript.",
+  "name": "genshin-damage-calculator",
+  "version": "1.0.0",
+  "description": "JavaScript library for calculating damage of Genshin Impact",
   "type": "module",
   "engines": {
-    "node": ">= 18.12 <19"
+    "node": ">= 18.12"
   },
   "devDependencies": {
     "@types/jest": "~29.5",
@@ -37,7 +37,7 @@
     "prettier": "prettier --config .prettierrc --write .",
     "test:watch": "jest --watch"
   },
-  "author": "Jakub Synowiec <jsynowiec@users.noreply.github.com>",
+  "author": "Koki Takahashi <hakatasiloving@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
     "tslib": "~2.6"

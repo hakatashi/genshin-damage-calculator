@@ -2,6 +2,7 @@ import yaml from 'js-yaml';
 import fs from 'fs/promises';
 import path from 'path';
 import {fileURLToPath} from 'url';
+// @ts-expect-error: Untyped
 import Ajv from 'ajv/dist/2020';
 import {compile as compileToTs} from 'json-schema-to-typescript'
 
