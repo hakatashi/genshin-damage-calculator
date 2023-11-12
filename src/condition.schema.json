@@ -21,74 +21,89 @@
     "def": {
       "type": "integer",
       "description": "Defense.",
-      "minimum": 0
+      "minimum": 0,
+      "default": 0
     },
     "hp": {
       "type": "integer",
       "description": "Max HP.",
-      "minimum": 0
+      "minimum": 0,
+      "default": 0
     },
     "is_crit": {
       "type": "boolean",
-      "description": "Whether the attack is critical."
+      "description": "Whether the attack is critical.",
+      "default": false
     },
     "crit_dmg": {
       "type": "number",
-      "description": "Critical damage rate in percentage.",
-      "minimum": 0
+      "description": "Critical damage increase rate.",
+      "minimum": 0,
+      "default": 0
     },
     "elemental_mastery": {
       "type": "number",
       "description": "Elemental mastery.",
-      "minimum": 0
+      "minimum": 0,
+      "default": 0
     },
     "base_atk_ability": {
       "type": "number",
-      "description": "Base skill ability that will be multiplied against the value of attack in percentage.",
-      "minimum": 0
+      "description": "Base skill ability that will be multiplied against the value of attack.",
+      "minimum": 0,
+      "default": 0
     },
     "base_def_ability": {
       "type": "number",
-      "description": "Base skill ability that will be multiplied against the value of defense in percentage.",
-      "minimum": 0
+      "description": "Base skill ability that will be multiplied against the value of defense.",
+      "minimum": 0,
+      "default": 0
     },
     "base_hp_ability": {
       "type": "number",
-      "description": "Base skill ability that will be multiplied against the value of max HP in percentage.",
-      "minimum": 0
+      "description": "Base skill ability that will be multiplied against the value of max HP.",
+      "minimum": 0,
+      "default": 0
     },
     "base_elemental_mastery_ability": {
       "type": "number",
-      "description": "Base skill ability that will be multiplied against the value of elemental mastery in percentage.",
-      "minimum": 0
+      "description": "Base skill ability that will be multiplied against the value of elemental mastery.",
+      "minimum": 0,
+      "default": 0
     },
     "base_damage_bonus": {
       "type": "number",
-      "description": "Bonus to the damage that will be multiplied against the value of damage in percentage. Only the increment of the multiplication must be specified. For example, if the bonus is +10%, this value should be 0.1."
+      "description": "Bonus to the damage that will be multiplied against the value of damage. Only the increment of the multiplication must be specified. For example, if the bonus is +10%, this value should be 0.1.",
+      "default": 0
     },
     "additive_base_damage_atk_multiplier": {
       "type": "number",
-      "description": "Additional damage multiplier that will be multiplied against the value of attack in percentage.",
-      "minimum": 0
+      "description": "Additional damage multiplier that will be multiplied against the value of attack.",
+      "minimum": 0,
+      "default": 0
     },
     "additive_base_damage_def_multiplier": {
       "type": "number",
-      "description": "Additional damage multiplier that will be multiplied against the value of defense in percentage.",
-      "minimum": 0
+      "description": "Additional damage multiplier that will be multiplied against the value of defense.",
+      "minimum": 0,
+      "default": 0
     },
     "additive_base_damage_hp_multiplier": {
       "type": "number",
-      "description": "Additional damage multiplier that will be multiplied against the value of max HP in percentage.",
-      "minimum": 0
+      "description": "Additional damage multiplier that will be multiplied against the value of max HP.",
+      "minimum": 0,
+      "default": 0
     },
     "additive_base_damage_elemental_mastery_multiplier": {
       "type": "number",
-      "description": "Additional damage multiplier that will be multiplied against the value of elemental mastery in percentage.",
-      "minimum": 0
+      "description": "Additional damage multiplier that will be multiplied against the value of elemental mastery.",
+      "minimum": 0,
+      "default": 0
     },
     "damage_bonus": {
       "type": "number",
-      "description": "Bonus to the damage that will be multiplied against the final value of damage in percentage. Only the increment of the multiplication must be specified. For example, if the bonus is +10%, this value should be 0.1."
+      "description": "Bonus to the damage that will be multiplied against the final value of damage. Only the increment of the multiplication must be specified. For example, if the bonus is +10%, this value should be 0.1.",
+      "default": 0
     },
     "enemy_level": {
       "type": "integer",
@@ -98,61 +113,100 @@
     },
     "def_reduction": {
       "type": "number",
-      "description": "Defense reduction in percentage."
+      "description": "Defense reduction.",
+      "default": 0
     },
     "def_ignored": {
       "type": "number",
-      "description": "Defense ignored in percentage."
+      "description": "Defense ignored.",
+      "default": 0
     },
     "base_res": {
       "type": "number",
-      "description": "Base resistance of the enemy in percentage."
+      "description": "Base resistance of the enemy.",
+      "default": 0
     },
     "res_bonus": {
       "type": "number",
-      "description": "Bonus to the resistance of the enemy in percentage."
+      "description": "Bonus to the resistance of the enemy.",
+      "default": 0
     },
     "res_debuffs": {
       "type": "number",
-      "description": "Debuffs to the resistance of the enemy in percentage."
+      "description": "Debuffs to the resistance of the enemy.",
+      "default": 0
     },
-    "character": {
-      "oneOf": [
-        {
-          "type": "object",
-          "title": "Traveller",
-          "properties": {
-            "name": {
-              "const": "Traveller"
-            },
-            "attack": {
-              "type": "number"
-            }
-          },
-          "required": [
-            "name",
-            "attack"
+    "vaporize": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "title": "Vaporize",
+      "description": "Vaporize reaction.",
+      "properties": {
+        "trigger_element": {
+          "type": "string",
+          "enum": [
+            "hydro",
+            "pyro"
           ],
-          "additionalProperties": false
-        },
-        {
-          "type": "object",
-          "title": "Amber",
-          "properties": {
-            "name": {
-              "const": "Amber"
-            },
-            "diff": {
-              "type": "number"
-            }
-          },
-          "required": [
-            "name",
-            "diff"
-          ],
-          "additionalProperties": false
+          "description": "Element that triggered vaporize reaction."
         }
-      ]
+      },
+      "required": [
+        "trigger_element"
+      ],
+      "default": null
+    },
+    "melt": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "title": "Melt",
+      "description": "Melt reaction.",
+      "properties": {
+        "trigger_element": {
+          "type": "string",
+          "enum": [
+            "pyro",
+            "cryo"
+          ],
+          "description": "Element that triggered melt reaction."
+        }
+      },
+      "required": [
+        "trigger_element"
+      ],
+      "default": null
+    },
+    "catalyze": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "title": "Catalyze",
+      "description": "Catalyze reaction.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "aggravate",
+            "spread"
+          ],
+          "description": "Type of catalyze reaction."
+        },
+        "bonus": {
+          "type": "number",
+          "description": "Bonus to the damage of the catalyze reaction.",
+          "minimum": 0,
+          "default": 0
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "default": null
     }
   },
   "additionalProperties": false

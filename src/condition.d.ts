@@ -6,6 +6,41 @@
  */
 
 /**
+ * Vaporize reaction.
+ */
+export type Vaporize = {
+  /**
+   * Element that triggered vaporize reaction.
+   */
+  trigger_element: "hydro" | "pyro";
+  [k: string]: unknown;
+} | null;
+/**
+ * Melt reaction.
+ */
+export type Melt = {
+  /**
+   * Element that triggered melt reaction.
+   */
+  trigger_element: "pyro" | "cryo";
+  [k: string]: unknown;
+} | null;
+/**
+ * Catalyze reaction.
+ */
+export type Catalyze = {
+  /**
+   * Type of catalyze reaction.
+   */
+  type: "aggravate" | "spread";
+  /**
+   * Bonus to the damage of the catalyze reaction.
+   */
+  bonus?: number;
+  [k: string]: unknown;
+} | null;
+
+/**
  * Conditions and status for calculating damage dealt to enemies. Expresses the state after applying the effects of weapons and artifacts.
  */
 export interface Condition {
@@ -30,7 +65,7 @@ export interface Condition {
    */
   is_crit?: boolean;
   /**
-   * Critical damage rate in percentage.
+   * Critical damage increase rate.
    */
   crit_dmg?: number;
   /**
@@ -38,43 +73,43 @@ export interface Condition {
    */
   elemental_mastery?: number;
   /**
-   * Base skill ability that will be multiplied against the value of attack in percentage.
+   * Base skill ability that will be multiplied against the value of attack.
    */
   base_atk_ability?: number;
   /**
-   * Base skill ability that will be multiplied against the value of defense in percentage.
+   * Base skill ability that will be multiplied against the value of defense.
    */
   base_def_ability?: number;
   /**
-   * Base skill ability that will be multiplied against the value of max HP in percentage.
+   * Base skill ability that will be multiplied against the value of max HP.
    */
   base_hp_ability?: number;
   /**
-   * Base skill ability that will be multiplied against the value of elemental mastery in percentage.
+   * Base skill ability that will be multiplied against the value of elemental mastery.
    */
   base_elemental_mastery_ability?: number;
   /**
-   * Bonus to the damage that will be multiplied against the value of damage in percentage. Only the increment of the multiplication must be specified. For example, if the bonus is +10%, this value should be 0.1.
+   * Bonus to the damage that will be multiplied against the value of damage. Only the increment of the multiplication must be specified. For example, if the bonus is +10%, this value should be 0.1.
    */
   base_damage_bonus?: number;
   /**
-   * Additional damage multiplier that will be multiplied against the value of attack in percentage.
+   * Additional damage multiplier that will be multiplied against the value of attack.
    */
   additive_base_damage_atk_multiplier?: number;
   /**
-   * Additional damage multiplier that will be multiplied against the value of defense in percentage.
+   * Additional damage multiplier that will be multiplied against the value of defense.
    */
   additive_base_damage_def_multiplier?: number;
   /**
-   * Additional damage multiplier that will be multiplied against the value of max HP in percentage.
+   * Additional damage multiplier that will be multiplied against the value of max HP.
    */
   additive_base_damage_hp_multiplier?: number;
   /**
-   * Additional damage multiplier that will be multiplied against the value of elemental mastery in percentage.
+   * Additional damage multiplier that will be multiplied against the value of elemental mastery.
    */
   additive_base_damage_elemental_mastery_multiplier?: number;
   /**
-   * Bonus to the damage that will be multiplied against the final value of damage in percentage. Only the increment of the multiplication must be specified. For example, if the bonus is +10%, this value should be 0.1.
+   * Bonus to the damage that will be multiplied against the final value of damage. Only the increment of the multiplication must be specified. For example, if the bonus is +10%, this value should be 0.1.
    */
   damage_bonus?: number;
   /**
@@ -82,32 +117,26 @@ export interface Condition {
    */
   enemy_level?: number;
   /**
-   * Defense reduction in percentage.
+   * Defense reduction.
    */
   def_reduction?: number;
   /**
-   * Defense ignored in percentage.
+   * Defense ignored.
    */
   def_ignored?: number;
   /**
-   * Base resistance of the enemy in percentage.
+   * Base resistance of the enemy.
    */
   base_res?: number;
   /**
-   * Bonus to the resistance of the enemy in percentage.
+   * Bonus to the resistance of the enemy.
    */
   res_bonus?: number;
   /**
-   * Debuffs to the resistance of the enemy in percentage.
+   * Debuffs to the resistance of the enemy.
    */
   res_debuffs?: number;
-  character?: Traveller | Amber;
-}
-export interface Traveller {
-  name: "Traveller";
-  attack: number;
-}
-export interface Amber {
-  name: "Amber";
-  diff: number;
+  vaporize?: Vaporize;
+  melt?: Melt;
+  catalyze?: Catalyze;
 }

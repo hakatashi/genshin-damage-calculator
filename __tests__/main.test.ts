@@ -1,42 +1,26 @@
-import { Delays, greeter } from '../src/main.js';
+import {calculateDamage} from '../src/main.js';
 
-describe('greeter function', () => {
-  const name = 'John';
-  let hello: string;
-
-  let timeoutSpy: jest.SpyInstance;
-
-  // Act before assertions
-  beforeAll(async () => {
-    // Read more about fake timers
-    // http://facebook.github.io/jest/docs/en/timer-mocks.html#content
-    // Jest 27 now uses "modern" implementation of fake timers
-    // https://jestjs.io/blog/2021/05/25/jest-27#flipping-defaults
-    // https://github.com/facebook/jest/pull/5171
-    jest.useFakeTimers();
-    timeoutSpy = jest.spyOn(global, 'setTimeout');
-
-    const p: Promise<string> = greeter(name);
-    jest.runOnlyPendingTimers();
-    hello = await p;
-  });
-
-  // Teardown (cleanup) after assertions
-  afterAll(() => {
-    timeoutSpy.mockRestore();
-  });
-
-  // Assert if setTimeout was called properly
+describe('calculateDamage function', () => {
+  // Example calculation taken from
+  // https://genshin-impact.fandom.com/wiki/Damage#Sample_Calculation
   it('delays the greeting by 2 seconds', () => {
-    expect(setTimeout).toHaveBeenCalledTimes(1);
-    expect(setTimeout).toHaveBeenLastCalledWith(
-      expect.any(Function),
-      Delays.Long,
-    );
-  });
+    const result = calculateDamage({
+      level: 70,
+      atk: 1500,
+      base_atk_ability: 6.19,
+      elemental_mastery: 150,
+      is_crit: true,
+      crit_dmg: 0.8,
+      damage_bonus: 0.4 + 0.52,
+      enemy_level: 75,
+      base_res: 0.1,
+      res_debuffs: 0.4,
+      def_reduction: 0.23,
+      vaporize: {
+        trigger_element: 'pyro',
+      },
+    });
 
-  // Assert greeter result
-  it('greets a user with `Hello, {name}` message', () => {
-    expect(hello).toBe(`Hello, ${name}`);
+    expect(result.damage).toBeCloseTo(52247, 0);
   });
 });

@@ -17,12 +17,4 @@ await fs.writeFile(toAbsolute('condition.d.ts'), ts);
 
 const validate = new Ajv().compile(conditionSchema);
 
-const ret = validate({
-  level: 10,
-  character: {
-    name: 'Traveller',
-    attack: 100,
-  },
-});
-
 console.log(validate.errors);
