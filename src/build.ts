@@ -5,17 +5,15 @@ import {fileURLToPath} from 'url';
 import Ajv from 'ajv/dist/2020';
 import {compile as compileToTs} from 'json-schema-to-typescript'
 
-const conditionYaml = await fs.readFile(
-  path.resolve(
-    fileURLToPath(import.meta.url),
-    '../condition.schema.yml',
-  ),
-  'utf8',
-);
+const toAbsolute = (p: string) => path.resolve(fileURLToPath(import.meta.url), '..', p);
+
+const conditionYaml = await fs.readFile(toAbsolute('condition.schema.yml'), 'utf8');
 const conditionSchema = yaml.load(conditionYaml);
 
+await fs.writeFile(toAbsolute('condition.schema.json'), JSON.stringify(conditionSchema, null, 2));
+
 const ts = await compileToTs(conditionSchema, 'Condition');
-console.log(ts);
+await fs.writeFile(toAbsolute('condition.d.ts'), ts);
 
 const validate = new Ajv().compile(conditionSchema);
 
