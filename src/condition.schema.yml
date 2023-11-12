@@ -1,0 +1,59 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://genshin-damage-calculator.schema.hakatashi.com/condition.schema.json
+type: object
+title: Condition
+description: Conditions and status for calculating damage dealt to enemies. Expresses the state after applying the effects of weapons and artifacts.
+properties:
+  level:
+    type: integer
+    description: Character level.
+    minimum: 0
+    maximum: 90
+  atk:
+    type: integer
+    description: Attack.
+    minimum: 0
+  def:
+    type: integer
+    description: Defense.
+    minimum: 0
+  hp:
+    type: integer
+    description: Health.
+    minimum: 0
+  is_crit:
+    type: boolean
+    description: Whether the attack is critical.
+  crit_dmg:
+    type: number
+    description: Critical damage rate in percentage.
+    minimum: 0
+  elemental_mastery:
+    type: number
+    description: Elemental mastery.
+    minimum: 0
+  character:
+    oneOf:
+      - type: object
+        properties:
+          name:
+            const: Traveller
+          attack:
+            type: number
+        required:
+          - name
+          - attack
+        additionalProperties: false
+      - type: object
+        properties:
+          name:
+            const: Amber
+          diff:
+            type: number
+        required:
+          - name
+          - diff
+        additionalProperties: false
+required:
+  - level
+additionalProperties: false
