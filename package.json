@@ -6,6 +6,7 @@
   "engines": {
     "node": ">= 18.12"
   },
+  "main": "dist/main.js",
   "devDependencies": {
     "@types/jest": "~29.5",
     "@types/node": "~18",
@@ -26,8 +27,7 @@
     "js-yaml": "^4.1.0"
   },
   "scripts": {
-    "start": "node build/src/main.js",
-    "clean": "rimraf coverage build tmp",
+    "clean": "rimraf coverage dist tmp",
     "prebuild": "npm run lint",
     "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -w -p tsconfig.json",
@@ -44,5 +44,13 @@
   },
   "volta": {
     "node": "18.12.1"
-  }
+  },
+  "files": [
+    "__tests__/**/*",
+    "dist/**/*",
+    "src/**/*",
+    "tsconfig.json",
+    "README.md",
+    "LICENSE"
+  ]
 }
