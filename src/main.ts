@@ -146,3 +146,6 @@ export const calculateDamage = (condition: Condition) => {
 
   return {damage};
 };
+
+export * from './condition.js';
+export * from './data/levelMultipliers.js';
