@@ -11,10 +11,154 @@
       "oneOf": [
         {
           "type": "object",
+          "title": "Lisa",
+          "properties": {
+            "lisa": {
+              "type": "object",
+              "title": "Lisa",
+              "properties": {
+                "c2": {
+                  "type": "object",
+                  "title": "Electromagnetic Field",
+                  "description": "Holding <span style=\"color:#FFD780FF\">Violet Arc</span> has the following effects:\n·Increases DEF by 25%.\n·Increases Lisa's resistance to interruption.",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Whether the effect is enabled."
+                    }
+                  },
+                  "required": [
+                    "enabled"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "lisa"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "title": "Eula",
+          "properties": {
+            "eula": {
+              "type": "object",
+              "title": "Eula",
+              "properties": {
+                "c1": {
+                  "type": "object",
+                  "title": "Tidal Illusion",
+                  "description": "Every time <span style=\"color:#FFD780FF\">Icetide Vortex</span>'s Grimheart stacks are consumed, Eula's Physical DMG is increased by 30% for 6s.\nEach stack consumed will increase the duration of this effect by 6s up to a maximum of 18s.",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Whether the effect is enabled."
+                    }
+                  },
+                  "required": [
+                    "enabled"
+                  ]
+                },
+                "c5": {
+                  "type": "object",
+                  "title": "Chivalric Quality",
+                  "description": "Increases the Level of <span style=\"color:#FFD780FF\">Icetide Vortex</span> by 3.\nMaximum upgrade level is 15.",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Whether the effect is enabled."
+                    }
+                  },
+                  "required": [
+                    "enabled"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "eula"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "title": "Kaeya",
+          "properties": {
+            "kaeya": {
+              "type": "object",
+              "title": "Kaeya",
+              "properties": {
+                "c1": {
+                  "type": "object",
+                  "title": "Excellent Blood",
+                  "description": "The CRIT Rate of Kaeya's Normal and Charge Attacks against opponents affected by <span style=\"color:#99FFFFFF\">Cryo</span> is increased by 15%.",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Whether the effect is enabled."
+                    }
+                  },
+                  "required": [
+                    "enabled"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "kaeya"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "title": "Klee",
+          "properties": {
+            "klee": {
+              "type": "object",
+              "title": "Klee",
+              "properties": {
+                "a1": {
+                  "type": "object",
+                  "title": "Pounding Surprise",
+                  "description": "When <span style=\"color:#FFD780FF\">Jumpy Dumpty</span> and Normal Attacks deal DMG, Klee has a 50% chance to obtain an Explosive Spark.\nThis Explosive Spark is consumed by the next Charged Attack, which costs no Stamina and deals 50% increased DMG.",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Whether the effect is enabled."
+                    }
+                  },
+                  "required": [
+                    "enabled"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "klee"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
           "title": "Amber",
           "properties": {
-            "Amber": {
+            "amber": {
               "type": "object",
+              "title": "Amber",
               "properties": {
                 "a1": {
                   "type": "object",
@@ -46,10 +190,10 @@
                     "enabled"
                   ]
                 },
-                "c1": {
+                "c2": {
                   "type": "object",
                   "title": "Bunny Triggered",
-                  "description": "Baron Bunny, new and improved! Hitting Baron Bunny's foot with a fully-charged Aimed Shot manually detonates it.<br/>Explosion via manual detonation deals 200% additional DMG.",
+                  "description": "Baron Bunny, new and improved! Hitting Baron Bunny's foot with a fully-charged Aimed Shot manually detonates it.\nExplosion via manual detonation deals 200% additional DMG.",
                   "properties": {
                     "enabled": {
                       "type": "boolean",
@@ -66,7 +210,7 @@
             }
           },
           "required": [
-            "Amber"
+            "amber"
           ],
           "additionalProperties": false
         },
@@ -74,30 +218,106 @@
           "type": "object",
           "title": "Traveler (Anemo)",
           "properties": {
-            "TravelerAnemo": {
+            "traveler_anemo": {
               "type": "object",
+              "title": "Traveler (Anemo)",
               "properties": {},
               "additionalProperties": false
             }
           },
           "required": [
-            "TravelerAnemo"
+            "traveler_anemo"
           ],
           "additionalProperties": false
         }
       ]
     },
-    "teamCharacters": {
+    "team_characters": {
       "title": "Team Character",
       "description": "The buffs that apply to the team characters.",
       "type": "object",
       "properties": {
-        "Amber": {
+        "lisa": {
+          "type": "object",
+          "title": "Lisa",
+          "description": "Lisa",
+          "properties": {
+            "a4": {
+              "type": "object",
+              "title": "Static Electricity Field",
+              "description": "Opponents hit by <span style=\"color:#FFD780FF\">Lightning Rose</span> have their DEF decreased by 15% for 10s.",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Whether the effect is enabled."
+                }
+              },
+              "required": [
+                "enabled"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "eula": {
+          "type": "object",
+          "title": "Eula",
+          "description": "Eula",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "kaeya": {
+          "type": "object",
+          "title": "Kaeya",
+          "description": "Kaeya",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "klee": {
+          "type": "object",
+          "title": "Klee",
+          "description": "Klee",
+          "properties": {
+            "c2": {
+              "type": "object",
+              "title": "Explosive Frags",
+              "description": "Being hit by <span style=\"color:#FFD780FF\">Jumpy Dumpty</span>'s mines decreases opponents' DEF by 23% for 10s.",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Whether the effect is enabled."
+                }
+              },
+              "required": [
+                "enabled"
+              ]
+            },
+            "c6": {
+              "type": "object",
+              "title": "Blazing Delight",
+              "description": "While under the effects of <span style=\"color:#FFD780FF\">Sparks 'n' Splash</span>, Klee will regenerate 3 Energy for all members of the party (excluding Klee) every 3s.\nWhen <span style=\"color:#FFD780FF\">Sparks 'n' Splash</span> is used, all party members will gain a 10% <span style=\"color:#FF9999FF\">Pyro DMG Bonus</span> for 25s.",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Whether the effect is enabled."
+                }
+              },
+              "required": [
+                "enabled"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "amber": {
           "type": "object",
           "title": "Amber",
           "description": "Amber",
           "properties": {
-            "c1": {
+            "c6": {
               "type": "object",
               "title": "Wildfire",
               "description": "<span style=\"color:#FFD780FF\">Fiery Rain</span> increases all party members' Movement SPD by 15% and ATK by 15% for 10s.",
@@ -115,15 +335,15 @@
           },
           "additionalProperties": false
         },
-        "TravelerAnemo": {
+        "traveler_anemo": {
           "type": "object",
           "title": "Traveler (Anemo)",
           "description": "Traveler (Anemo)",
           "properties": {
-            "c1": {
+            "c6": {
               "type": "object",
               "title": "Intertwined Winds",
-              "description": "Targets who take DMG from <span style=\"color:#FFD780FF\">Gust Surge</span> have their <span style=\"color:#80FFD7FF\">Anemo RES</span> decreased by 20%.<br/>If an Elemental Absorption occurred, then their RES towards the corresponding Element is also decreased by 20%.",
+              "description": "Targets who take DMG from <span style=\"color:#FFD780FF\">Gust Surge</span> have their <span style=\"color:#80FFD7FF\">Anemo RES</span> decreased by 20%.\nIf an Elemental Absorption occurred, then their RES towards the corresponding Element is also decreased by 20%.",
               "properties": {
                 "element": {
                   "enum": [

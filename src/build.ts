@@ -49,17 +49,19 @@ const getWikiData = async (id: string, lang: string) => {
 	return res.data?.data;
 };
 
-const toPascalCase = (s: string) => (
-	s.replaceAll(/(?:[^a-z]+)([a-z])/ig, (_, c) => c.toUpperCase())
-		.replaceAll(/[^a-z]/ig, '')
-);
+const toSnakeCase = (s: string) => { 
+	const words = s.split(/[^a-z]+/ig).filter((w) => w.length > 0);
+	return words.map((w) => w.toLowerCase()).join('_');
+};
 
 const getBuffProperties = (buff: any, title: string, description: string) => {
+	const normalizedDescription = description.replaceAll('<br/>', '\n');
+
 	if (buff.type === 'boolean') {
 		return {
 			type: 'object',
 			title,
-			description,
+			description: normalizedDescription,
 			properties: {
 				enabled: {
 					type: 'boolean',
@@ -75,7 +77,7 @@ const getBuffProperties = (buff: any, title: string, description: string) => {
 		return {
 			type: 'object',
 			title,
-			description,
+			description: normalizedDescription,
 			properties: {
 				stacks: {
 					type: 'integer',
@@ -92,7 +94,7 @@ const getBuffProperties = (buff: any, title: string, description: string) => {
 		return {
 			type: 'object',
 			title,
-			description,
+			description: normalizedDescription,
 			properties: {
 				element: {
 					enum: buff.elements,
@@ -122,13 +124,14 @@ for (const character of characterProperties) {
 		type: 'object',
 		title: data.page.name,
 		properties: {
-			[toPascalCase(data.page.name)]: {
+			[toSnakeCase(data.page.name)]: {
 				type: 'object',
+				title: data.page.name,
 				properties: buffProperties,
 				additionalProperties: false,
 			},
 		},
-		required: [toPascalCase(data.page.name)],
+		required: [toSnakeCase(data.page.name)],
 		additionalProperties: false,
 	};
 
@@ -204,16 +207,16 @@ for (const character of characterProperties) {
 
 			for (const buff of characterConstellation) {
 				if (buff.target === 'self') {
-					buffProperties.c1 = getBuffProperties(buff, constellation.name, constellation.desc);
+					buffProperties[constellationName] = getBuffProperties(buff, constellation.name, constellation.desc);
 				} else if (buff.target === 'team' || buff.target === 'enemy') {
-					teamBuffProperties.c1 = getBuffProperties(buff, constellation.name, constellation.desc);
+					teamBuffProperties[constellationName] = getBuffProperties(buff, constellation.name, constellation.desc);
 				}
 			}
 		}
 	}
 
 	characterBuffs.push(buffObject);
-	teamCharacterBuffs[toPascalCase(data.page.name)] = teamBuffObject;
+	teamCharacterBuffs[toSnakeCase(data.page.name)] = teamBuffObject;
 }
 
 const conditionYaml = await fs.readFile(toAbsolute('condition.schema.yml'), 'utf8');
@@ -227,7 +230,7 @@ await fs.writeFile(toAbsolute('condition.d.ts'), ts);
 const buffsYaml = await fs.readFile(toAbsolute('buffs.schema.yml'), 'utf8');
 const buffsSchema = yaml.load(buffsYaml);
 buffsSchema.properties.character.oneOf = characterBuffs;
-buffsSchema.properties.teamCharacters.properties = teamCharacterBuffs;
+buffsSchema.properties.team_characters.properties = teamCharacterBuffs;
 
 await fs.writeFile(toAbsolute('buffs.schema.json'), JSON.stringify(buffsSchema, null, 2));
 

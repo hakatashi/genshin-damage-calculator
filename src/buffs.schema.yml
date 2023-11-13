@@ -10,7 +10,7 @@ properties:
     title: Character
     description: The buffs that apply to the character itself.
     oneOf: [] # Automatically populated
-  teamCharacters:
+  team_characters:
     title: Team Character
     description: The buffs that apply to the team characters.
     type: object

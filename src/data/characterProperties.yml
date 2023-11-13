@@ -1,3 +1,98 @@
+# Lisa
+- hoyowiki_id: 2
+  a4:
+    - target: enemy
+      type: boolean
+      buffs:
+        - param: def_reduction
+          value: 0.15
+          type: status
+  c2:
+    - target: self
+      type: boolean
+      buffs:
+        - param: def
+          value: 0.25
+          type: status
+
+# Eula
+- hoyowiki_id: 6
+  c1:
+    - target: self
+      type: boolean
+      buffs:
+        - param: physical_damage_bonus
+          value: 0.3
+          type: status
+  c5:
+    - target: self
+      type: boolean
+      buffs:
+        - param: damage_bonus
+          value: 0.25
+          type: burst
+          attack_name: Lightfall Sword Base DMG
+        - param: damage_bonus
+          value: 0.25
+          type: burst
+          attack_name: DMG Per Stack
+
+# Gaia
+- hoyowiki_id: 9
+  c1:
+    - target: self
+      type: boolean
+      buffs:
+        - param: crit_rate
+          value: 0.15
+          type: normal_attack
+          attack_name: 1-Hit DMG
+        - param: crit_rate
+          value: 0.15
+          type: normal_attack
+          attack_name: 2-Hit DMG
+        - param: crit_rate
+          value: 0.15
+          type: normal_attack
+          attack_name: 3-Hit DMG
+        - param: crit_rate
+          value: 0.15
+          type: normal_attack
+          attack_name: 4-Hit DMG
+        - param: crit_rate
+          value: 0.15
+          type: normal_attack
+          attack_name: 5-Hit DMG
+        - param: crit_rate
+          value: 0.15
+          type: normal_attack
+          attack_name: Charged Attack DMG
+
+# Klee
+- hoyowiki_id: 12
+  a1:
+    - target: self
+      type: boolean
+      buffs:
+        - param: damage_bonus
+          value: 0.5
+          type: normal_attack
+          attack_name: Charged Attack DMG
+  c2:
+    - target: enemy
+      type: boolean
+      buffs:
+        - param: def_reduction
+          value: 0.23
+          type: status
+  c6:
+    - target: team
+      type: boolean
+      buffs:
+        - param: pyro_damage_bonus
+          value: 0.1
+          type: status
+
 # Amber
 - hoyowiki_id: 14
   a1:
