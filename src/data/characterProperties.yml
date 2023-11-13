@@ -1,0 +1,54 @@
+# Amber
+- hoyowiki_id: 14
+  a1:
+    - target: self
+      type: boolean
+      buffs:
+        - param: crit_rate
+          value: 0.1
+          type: burst
+          attack_name: Fiery Rain DMG Per Wave
+        - param: crit_rate
+          value: 0.1
+          type: burst
+          attack_name: Total Fiery Rain DMG
+  a4:
+    - target: self
+      type: boolean
+      buffs:
+        - param: atk
+          value: 0.15
+          type: status
+  c2:
+    - target: self
+      type: boolean
+      buffs:
+        - param: damage_bonus
+          value: 2
+          type: skill
+          attack_name: Explosion DMG
+  c6:
+    - target: team
+      type: boolean
+      buffs:
+        - param: atk
+          value: 0.15
+          type: status
+
+# Traveller (Anemo)
+- hoyowiki_id: 19
+  c2:
+    - target: self_persist
+      type: boolean
+      buffs:
+        - param: energy_recharge
+          value: 0.16
+          type: status
+  c6:
+    - target: enemy
+      type: element
+      elements: [null, anemo, pyro, cyro, hydro, electro]
+      buffs:
+        - param: element_res
+          value: -0.2
+          type: status

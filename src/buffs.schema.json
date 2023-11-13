@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://genshin-damage-calculator.schema.hakatashi.com/buffs.schema.json",
+  "type": "object",
+  "title": "Buffs",
+  "description": "Buffs that apply to the character. The buffs are applied after the calculations of character properties.",
+  "properties": {
+    "character": {
+      "title": "Character",
+      "description": "The buffs that apply to the character itself.",
+      "oneOf": [
+        {
+          "type": "object",
+          "title": "Amber",
+          "properties": {
+            "Amber": {
+              "type": "object",
+              "properties": {
+                "a1": {
+                  "type": "object",
+                  "title": "Every Arrow Finds Its Target",
+                  "description": "Increases the CRIT Rate of <span style=\"color:#FFD780FF\">Fiery Rain</span> by 10% and widens its AoE by 30%.",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Whether the effect is enabled."
+                    }
+                  },
+                  "required": [
+                    "enabled"
+                  ]
+                },
+                "a4": {
+                  "type": "object",
+                  "title": "Precise Shot",
+                  "description": "Aimed Shot hits on weak points increase ATK by 15% for 10s.",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Whether the effect is enabled."
+                    }
+                  },
+                  "required": [
+                    "enabled"
+                  ]
+                },
+                "c1": {
+                  "type": "object",
+                  "title": "Bunny Triggered",
+                  "description": "Baron Bunny, new and improved! Hitting Baron Bunny's foot with a fully-charged Aimed Shot manually detonates it.<br/>Explosion via manual detonation deals 200% additional DMG.",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Whether the effect is enabled."
+                    }
+                  },
+                  "required": [
+                    "enabled"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "Amber"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "title": "Traveler (Anemo)",
+          "properties": {
+            "TravelerAnemo": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "TravelerAnemo"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "teamCharacters": {
+      "title": "Team Character",
+      "description": "The buffs that apply to the team characters.",
+      "type": "object",
+      "properties": {
+        "Amber": {
+          "type": "object",
+          "title": "Amber",
+          "description": "Amber",
+          "properties": {
+            "c1": {
+              "type": "object",
+              "title": "Wildfire",
+              "description": "<span style=\"color:#FFD780FF\">Fiery Rain</span> increases all party members' Movement SPD by 15% and ATK by 15% for 10s.",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Whether the effect is enabled."
+                }
+              },
+              "required": [
+                "enabled"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "TravelerAnemo": {
+          "type": "object",
+          "title": "Traveler (Anemo)",
+          "description": "Traveler (Anemo)",
+          "properties": {
+            "c1": {
+              "type": "object",
+              "title": "Intertwined Winds",
+              "description": "Targets who take DMG from <span style=\"color:#FFD780FF\">Gust Surge</span> have their <span style=\"color:#80FFD7FF\">Anemo RES</span> decreased by 20%.<br/>If an Elemental Absorption occurred, then their RES towards the corresponding Element is also decreased by 20%.",
+              "properties": {
+                "element": {
+                  "enum": [
+                    null,
+                    "anemo",
+                    "pyro",
+                    "cyro",
+                    "hydro",
+                    "electro"
+                  ],
+                  "description": "The element of the buff. If the buff is not elemental, this property should be null."
+                }
+              },
+              "required": [
+                "element"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  }
+}

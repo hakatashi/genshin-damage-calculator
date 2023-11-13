@@ -1,0 +1,17 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://genshin-damage-calculator.schema.hakatashi.com/buffs.schema.json
+type: object
+title: Buffs
+description:
+  Buffs that apply to the character. The buffs are applied after the
+  calculations of character properties.
+properties:
+  character:
+    title: Character
+    description: The buffs that apply to the character itself.
+    oneOf: [] # Automatically populated
+  teamCharacters:
+    title: Team Character
+    description: The buffs that apply to the team characters.
+    type: object
+    properties: {} # Automatically populated

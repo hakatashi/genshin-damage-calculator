@@ -87,7 +87,14 @@ export const calculateDamage = (condition: Condition) => {
     vaporize = null,
     melt = null,
     catalyze = null,
+    character = null,
   } = condition;
+
+  if (character !== null) {
+    if ('Amber' in character) {
+      console.log(character.Amber);
+    }
+  }
 
   const atkDamage = atk * base_atk_ability;
   const defDamage = def * base_def_ability;
