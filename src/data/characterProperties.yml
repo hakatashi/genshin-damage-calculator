@@ -1,14 +1,16 @@
 # Lisa
 - hoyowiki_id: 2
   a4:
-    - target: enemy
+    activated:
+      target: enemy
       type: boolean
       buffs:
         - param: def_reduction
           value: 0.15
           type: status
   c2:
-    - target: self
+    activated:
+      target: self
       type: boolean
       buffs:
         - param: def
@@ -17,15 +19,44 @@
 
 # Eula
 - hoyowiki_id: 6
+  skill:
+    gained_stacks:
+      description: Gained stacks of Grimheart
+      target: self
+      type: stacks
+      max_stacks: 2
+      buffs:
+        - param: def
+          value: 0.3
+          type: status
+    consumed_stacks:
+      description: Grimheart stacks are consumed
+      target: enemy
+      type: custom
+      properties:
+        stacks:
+          description: Consumed stacks of Grimheart
+          type: integer
+          minimum: 0
+          maximum: 2
+          default: 0
+        skill_level:
+          description: Skill level of Grimheart
+          type: integer
+          minimum: 1
+          maximum: 13
+          default: 1
   c1:
-    - target: self
+    activated:
+      target: self
       type: boolean
       buffs:
         - param: physical_damage_bonus
           value: 0.3
           type: status
   c5:
-    - target: self
+    activated:
+      target: self
       type: boolean
       buffs:
         - param: damage_bonus
@@ -37,10 +68,11 @@
           type: burst
           attack_name: DMG Per Stack
 
-# Gaia
+# Kaeya
 - hoyowiki_id: 9
   c1:
-    - target: self
+    activated:
+      target: self
       type: boolean
       buffs:
         - param: crit_rate
@@ -71,7 +103,8 @@
 # Klee
 - hoyowiki_id: 12
   a1:
-    - target: self
+    activated:
+      target: self
       type: boolean
       buffs:
         - param: damage_bonus
@@ -79,14 +112,16 @@
           type: normal_attack
           attack_name: Charged Attack DMG
   c2:
-    - target: enemy
+    activated:
+      target: enemy
       type: boolean
       buffs:
         - param: def_reduction
           value: 0.23
           type: status
   c6:
-    - target: team
+    activated:
+      target: team
       type: boolean
       buffs:
         - param: pyro_damage_bonus
@@ -96,7 +131,8 @@
 # Amber
 - hoyowiki_id: 14
   a1:
-    - target: self
+    activated:
+      target: self
       type: boolean
       buffs:
         - param: crit_rate
@@ -108,14 +144,16 @@
           type: burst
           attack_name: Total Fiery Rain DMG
   a4:
-    - target: self
+    activated:
+      target: self
       type: boolean
       buffs:
         - param: atk
           value: 0.15
           type: status
   c2:
-    - target: self
+    activated:
+      target: self
       type: boolean
       buffs:
         - param: damage_bonus
@@ -123,7 +161,8 @@
           type: skill
           attack_name: Explosion DMG
   c6:
-    - target: team
+    activated:
+      target: team
       type: boolean
       buffs:
         - param: atk
@@ -133,17 +172,68 @@
 # Traveller (Anemo)
 - hoyowiki_id: 19
   c2:
-    - target: self_persist
+    activated:
+      target: self_persist
       type: boolean
       buffs:
         - param: energy_recharge
           value: 0.16
           type: status
   c6:
-    - target: enemy
+    absorbed_element:
+      description:
+        The element type Gust Surge absorbed. If the element is not absorbed,
+        this property is anemo. If enemy is not hit by the burst, this property
+        is null.
+      target: enemy
       type: element
       elements: [null, anemo, pyro, cyro, hydro, electro]
       buffs:
+        - param: element_res
+          value: -0.2
+          type: status
+
+# Venti
+- hoyowiki_id: 23
+  c2:
+    burst_hit:
+      description: Whether the burst hit the enemy.
+      target: enemy
+      type: boolean
+      buffs:
+        - param: anemo_res
+          value: -0.12
+          type: status
+    burst_launched:
+      description: Whether the enemy is launched by this burst.
+      target: enemy
+      type: boolean
+      buffs:
+        - param: physical_res
+          value: -0.12
+          type: status
+  c4:
+    activated:
+      target: self
+      type: boolean
+      max_stacks: 2
+      buffs:
+        - param: anemo_damage_bonus
+          value: 0.25
+          type: status
+  c6:
+    absorbed_element:
+      description:
+        The element type Wind's Grand Ode absorbed. If the element is not
+        absorbed, this property is anemo. If enemy is not hit by the burst, this
+        property is null.
+      target: enemy
+      type: element
+      elements: [null, anemo, pyro, cyro, hydro, electro]
+      buffs:
+        - param: anemo_res
+          value: -0.2
+          type: status
         - param: element_res
           value: -0.2
           type: status

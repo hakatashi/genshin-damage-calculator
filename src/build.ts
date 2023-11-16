@@ -4,9 +4,11 @@ import {fileURLToPath} from 'url';
 import Ajv from 'ajv/dist/2020.js';
 import axios from 'axios';
 import yaml from 'js-yaml';
+import type { JSONSchema7, JSONSchema7Definition} from 'json-schema';
 import {compile as compileToTs} from 'json-schema-to-typescript'
 import storage from 'node-persist';
 import type CharacterProperties from './data/characterProperties.js';
+import { Effect, EffectObject } from './data/characterProperties.js';
 
 interface Module {
 	id: string,
@@ -54,73 +56,56 @@ const toSnakeCase = (s: string) => {
 	return words.map((w) => w.toLowerCase()).join('_');
 };
 
-const getBuffProperties = (buff: any, title: string, description: string) => {
-	const normalizedDescription = description.replaceAll('<br/>', '\n');
-
-	if (buff.type === 'boolean') {
+const getEffectSchema = (effect: Effect): JSONSchema7Definition => {
+	if (effect.type === 'boolean') {
 		return {
-			type: 'object',
-			title,
-			description: normalizedDescription,
-			properties: {
-				enabled: {
-					type: 'boolean',
-					default: false,
-					description: 'Whether the effect is enabled.',
-				},
-			},
-			required: ['enabled'],
+			type: 'boolean',
+			default: false,
+			description: effect.description ?? 'Whether the effect is enabled.',
 		};
 	}
 
-	if (buff.type === 'stacks') {
+	if (effect.type === 'stacks') {
 		return {
-			type: 'object',
-			title,
-			description: normalizedDescription,
-			properties: {
-				stacks: {
-					type: 'integer',
-					default: 0,
-					maximum: buff.max_stacks,
-					description: 'The number of stacks.',
-				},
-			},
-			required: ['stacks'],
+			type: 'integer',
+			default: 0,
+			maximum: effect.max_stacks,
+			description: effect.description ?? 'The number of stacks.',
 		};
 	}
 
-	if (buff.type === 'element') {
+	if (effect.type === 'element') {
 		return {
-			type: 'object',
-			title,
-			description: normalizedDescription,
-			properties: {
-				element: {
-					enum: buff.elements,
-					description: 'The element of the buff. If the buff is not elemental, this property should be null.',
-				},
-			},
-			required: ['element'],
+			enum: effect.elements,
+			description: effect.description ?? 'The element of the buff. If the buff is not elemental, this property should be null.',
 		}
 	}
 
-	throw new Error(`Unknown buff type ${buff.type}`);
+	if (effect.type === 'custom') {
+		return {
+			type: 'object',
+			description: effect.description ?? 'The element of the buff. If the buff is not elemental, this property should be null.',
+			properties: effect.properties,
+			required: Object.keys(effect.properties),
+		};
+	}
+
+	throw new Error('Unknown buff type');
 };
 
 const characterProperties: CharacterProperties = yaml.load(
 	await fs.readFile(toAbsolute('data/characterProperties.yml'), 'utf8'),
 );
 
-const characterBuffs: any[] = [];
-const teamCharacterBuffs: {[k: string]: any} = {};
+const characterBuffs: JSONSchema7[] = [];
+const teamCharacterBuffs: {[k: string]: JSONSchema7} = {};
 
 for (const character of characterProperties) {
 	const data = await getWikiData(character.hoyowiki_id, 'en-us');
 
-	const buffProperties: {[k: string]: any} = {};
+	const buffProperties: {[k: string]: JSONSchema7} = {};
 
-	const buffObject = {
+	const buffObject: JSONSchema7 = {
 		type: 'object',
 		title: data.page.name,
 		properties: {
@@ -137,7 +122,7 @@ for (const character of characterProperties) {
 
 	const teamBuffProperties: {[k: string]: any} = {};
 
-	const teamBuffObject = {
+	const teamBuffObject: JSONSchema7 = {
 		type: 'object',
 		title: data.page.name,
 		description: data.page.name,
@@ -165,26 +150,50 @@ for (const character of characterProperties) {
 
 	console.log(constellations);
 
-	const talentNameData: ['a1' | 'a4', string][] = [
+	const populateBuffProperties = (effectObject: EffectObject, id: string, effectTitle: string, effectDescription: string) => {
+		const normalizedDescription = effectDescription.replaceAll('<br/>', '\n');
+
+		const buffSchema: JSONSchema7 = {
+			type: 'object',
+			title: effectTitle,
+			description: normalizedDescription,
+			properties: {},
+		};
+
+		const teamBuffSchema: JSONSchema7 = {
+			type: 'object',
+			title: effectTitle,
+			description: normalizedDescription,
+			properties: {},
+		};
+
+		for (const [key, effect] of Object.entries(effectObject)) {
+			if (effect.target === 'self') {
+				buffSchema.properties![key] = getEffectSchema(effect);
+			} else if (effect.target === 'team' || effect.target === 'enemy') {
+				teamBuffSchema.properties![key] = getEffectSchema(effect);
+			}
+		}
+
+		buffProperties[id] = buffSchema;
+		teamBuffProperties[id] = teamBuffSchema;
+	};
+
+	const talentNameData: ['a1' | 'a4' | 'skill' | 'burst', string][] = [
+		['skill', 'battle_talent_1'],
+		['burst', 'battle_talent_2'],
 		['a1', 'const_talent_0'],
 		['a4', 'const_talent_1'],
 	];
 
-	for (const [talentName, iconUrlId] of talentNameData) {
-		const characterTalent = character[talentName];
+	for (const [talentId, iconUrlId] of talentNameData) {
+		const characterTalent = character[talentId];
 		if (characterTalent !== undefined) {
 			const talent = talents.list.find((t: any) => t.icon_url.includes(iconUrlId));
 			if (!talent) {
-				throw new Error(`Failed to find ${talentName} talent for character id ${character.hoyowiki_id}`);
+				throw new Error(`Failed to find ${talentId} talent for character id ${character.hoyowiki_id}`);
 			}
-
-			for (const buff of characterTalent) {
-				if (buff.target === 'self') {
-					buffProperties[talentName] = getBuffProperties(buff, talent.title, talent.desc);
-				} else if (buff.target === 'team' || buff.target === 'enemy') {
-					teamBuffProperties[talentName] = getBuffProperties(buff, talent.title, talent.desc);
-				}
-			}
+			populateBuffProperties(characterTalent, talentId, talent.title, talent.desc);
 		}
 	}
 
@@ -204,14 +213,7 @@ for (const character of characterProperties) {
 			if (!constellation) {
 				throw new Error(`Failed to find constellation ${index + 1} for character id ${character.hoyowiki_id}`);
 			}
-
-			for (const buff of characterConstellation) {
-				if (buff.target === 'self') {
-					buffProperties[constellationName] = getBuffProperties(buff, constellation.name, constellation.desc);
-				} else if (buff.target === 'team' || buff.target === 'enemy') {
-					teamBuffProperties[constellationName] = getBuffProperties(buff, constellation.name, constellation.desc);
-				}
-			}
+			populateBuffProperties(characterConstellation, constellationName, constellation.name, constellation.desc);
 		}
 	}
 

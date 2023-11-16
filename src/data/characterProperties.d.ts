@@ -1,3 +1,5 @@
+import type {JSONSchema7Definition} from 'json-schema';
+
 type Element = 'anemo' | 'cryo' | 'dendro' | 'electro' | 'geo' | 'hydro' | 'pyro';
 
 interface Buff {
@@ -7,24 +9,51 @@ interface Buff {
   attack_name?: string,
 }
 
-interface Effect {
+interface BaseEffect {
+  description?: string,
   target: 'self' | 'self_persist' | 'team' | 'enemy',
-  type: 'boolean' | 'stacks' | 'element',
   buffs: Buff[],
-  elements?: (Element | null)[],
-  max_stacks?: number,
 }
 
-interface CharacterProperty {
+interface BooleanEffect extends BaseEffect {
+  type: 'boolean',
+}
+
+interface StackEffect extends BaseEffect {
+  type: 'stacks',
+  max_stacks: number,
+}
+
+interface ElementEffect extends BaseEffect {
+  type: 'element',
+  elements: (Element | null)[],
+}
+
+interface CustomEffect extends BaseEffect {
+  type: 'custom',
+  properties: {
+    [key: string]: JSONSchema7Definition,
+  },
+}
+
+export type Effect = BooleanEffect | StackEffect | ElementEffect | CustomEffect;
+
+export interface EffectObject {
+  [key: string]: Effect,
+}
+
+export interface CharacterProperty {
   hoyowiki_id: string,
-  a1?: Effect[],
-  a4?: Effect[],
-  c1?: Effect[],
-  c2?: Effect[],
-  c3?: Effect[],
-  c4?: Effect[],
-  c5?: Effect[],
-  c6?: Effect[],
+  skill?: EffectObject,
+  burst?: EffectObject,
+  a1?: EffectObject,
+  a4?: EffectObject,
+  c1?: EffectObject,
+  c2?: EffectObject,
+  c3?: EffectObject,
+  c4?: EffectObject,
+  c5?: EffectObject,
+  c6?: EffectObject,
 }
 
 type CharacterProperties = CharacterProperty[];

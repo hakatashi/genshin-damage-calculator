@@ -8,7 +8,7 @@
 /**
  * The buffs that apply to the character itself.
  */
-export type Character = Lisa | Eula | Kaeya | Klee | Amber | TravelerAnemo;
+export type Character = Lisa | Eula | Kaeya | Klee | Amber | TravelerAnemo | Venti;
 
 /**
  * Buffs that apply to the character. The buffs are applied after the calculations of character properties.
@@ -22,7 +22,14 @@ export interface Lisa {
   lisa: Lisa1;
 }
 export interface Lisa1 {
+  a4?: StaticElectricityField;
   c2?: ElectromagneticField;
+}
+/**
+ * Opponents hit by <span style="color:#FFD780FF">Lightning Rose</span> have their DEF decreased by 15% for 10s.
+ */
+export interface StaticElectricityField {
+  [k: string]: unknown;
 }
 /**
  * Holding <span style="color:#FFD780FF">Violet Arc</span> has the following effects:
@@ -33,15 +40,40 @@ export interface ElectromagneticField {
   /**
    * Whether the effect is enabled.
    */
-  enabled: boolean;
+  activated?: boolean;
   [k: string]: unknown;
 }
 export interface Eula {
   eula: Eula1;
 }
 export interface Eula1 {
+  skill?: IcetideVortex;
   c1?: TidalIllusion;
   c5?: ChivalricQuality;
+}
+/**
+ * Sharp frost, swift blade.
+ *
+ * <span style="color:#FFD780FF">Tap/Press</span>
+ * Slashes swiftly, dealing <span style="color:#99FFFFFF">Cryo DMG</span>.
+ * When it hits an opponent, Eula gains a stack of Grimheart that stacks up to 2 times. These stacks can only be gained once every 0.3s.
+ *
+ * <span style="color:#FFD780FF">Grimheart</span>
+ * Increases Eula's resistance to interruption and DEF.
+ *
+ * <span style="color:#FFD780FF">Hold</span>
+ * Wielding her sword, Eula consumes all the stacks of Grimheart and lashes forward, dealing <span style="color:#99FFFFFF">AoE Cryo DMG</span> to opponents in front of her.
+ * If Grimheart stacks are consumed, surrounding opponents will have their Physical RES and <span style="color:#99FFFFFF">Cryo RES</span> decreased.
+ * Each consumed stack of Grimheart will be converted into an Icewhirl Brand that deals <span style="color:#99FFFFFF">Cryo DMG</span> to nearby opponents.
+ *
+ * <i>"So the waves roiled, swallowing the crown of the nobles. And ever after did each drop amidst the icy waves reflect a golden crown, each and every droplet of the spray shining with its light."</i>
+ */
+export interface IcetideVortex {
+  /**
+   * Gained stacks of Grimheart
+   */
+  gained_stacks?: number;
+  [k: string]: unknown;
 }
 /**
  * Every time <span style="color:#FFD780FF">Icetide Vortex</span>'s Grimheart stacks are consumed, Eula's Physical DMG is increased by 30% for 6s.
@@ -51,7 +83,7 @@ export interface TidalIllusion {
   /**
    * Whether the effect is enabled.
    */
-  enabled: boolean;
+  activated?: boolean;
   [k: string]: unknown;
 }
 /**
@@ -62,7 +94,7 @@ export interface ChivalricQuality {
   /**
    * Whether the effect is enabled.
    */
-  enabled: boolean;
+  activated?: boolean;
   [k: string]: unknown;
 }
 export interface Kaeya {
@@ -78,7 +110,7 @@ export interface ExcellentBlood {
   /**
    * Whether the effect is enabled.
    */
-  enabled: boolean;
+  activated?: boolean;
   [k: string]: unknown;
 }
 export interface Klee {
@@ -86,6 +118,8 @@ export interface Klee {
 }
 export interface Klee1 {
   a1?: PoundingSurprise;
+  c2?: ExplosiveFrags;
+  c6?: BlazingDelight;
 }
 /**
  * When <span style="color:#FFD780FF">Jumpy Dumpty</span> and Normal Attacks deal DMG, Klee has a 50% chance to obtain an Explosive Spark.
@@ -95,7 +129,20 @@ export interface PoundingSurprise {
   /**
    * Whether the effect is enabled.
    */
-  enabled: boolean;
+  activated?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * Being hit by <span style="color:#FFD780FF">Jumpy Dumpty</span>'s mines decreases opponents' DEF by 23% for 10s.
+ */
+export interface ExplosiveFrags {
+  [k: string]: unknown;
+}
+/**
+ * While under the effects of <span style="color:#FFD780FF">Sparks 'n' Splash</span>, Klee will regenerate 3 Energy for all members of the party (excluding Klee) every 3s.
+ * When <span style="color:#FFD780FF">Sparks 'n' Splash</span> is used, all party members will gain a 10% <span style="color:#FF9999FF">Pyro DMG Bonus</span> for 25s.
+ */
+export interface BlazingDelight {
   [k: string]: unknown;
 }
 export interface Amber {
@@ -105,6 +152,7 @@ export interface Amber1 {
   a1?: EveryArrowFindsItsTarget;
   a4?: PreciseShot;
   c2?: BunnyTriggered;
+  c6?: Wildfire;
 }
 /**
  * Increases the CRIT Rate of <span style="color:#FFD780FF">Fiery Rain</span> by 10% and widens its AoE by 30%.
@@ -113,7 +161,7 @@ export interface EveryArrowFindsItsTarget {
   /**
    * Whether the effect is enabled.
    */
-  enabled: boolean;
+  activated?: boolean;
   [k: string]: unknown;
 }
 /**
@@ -123,7 +171,7 @@ export interface PreciseShot {
   /**
    * Whether the effect is enabled.
    */
-  enabled: boolean;
+  activated?: boolean;
   [k: string]: unknown;
 }
 /**
@@ -134,13 +182,67 @@ export interface BunnyTriggered {
   /**
    * Whether the effect is enabled.
    */
-  enabled: boolean;
+  activated?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * <span style="color:#FFD780FF">Fiery Rain</span> increases all party members' Movement SPD by 15% and ATK by 15% for 10s.
+ */
+export interface Wildfire {
   [k: string]: unknown;
 }
 export interface TravelerAnemo {
   traveler_anemo: TravelerAnemo1;
 }
-export interface TravelerAnemo1 {}
+export interface TravelerAnemo1 {
+  c2?: UprisingWhirlwind;
+  c6?: IntertwinedWinds;
+}
+/**
+ * Increases Energy Recharge by 16%.
+ */
+export interface UprisingWhirlwind {
+  [k: string]: unknown;
+}
+/**
+ * Targets who take DMG from <span style="color:#FFD780FF">Gust Surge</span> have their <span style="color:#80FFD7FF">Anemo RES</span> decreased by 20%.
+ * If an Elemental Absorption occurred, then their RES towards the corresponding Element is also decreased by 20%.
+ */
+export interface IntertwinedWinds {
+  [k: string]: unknown;
+}
+export interface Venti {
+  venti: Venti1;
+}
+export interface Venti1 {
+  c2?: BreezeOfReminiscence;
+  c4?: HurricaneOfFreedom;
+  c6?: StormOfDefiance;
+}
+/**
+ * <span style="color:#FFD780FF">Skyward Sonnet</span> decreases opponents' <span style="color:#80FFD7FF">Anemo RES</span> and Physical RES by 12% for 10s.
+ * Opponents launched by <span style="color:#FFD780FF">Skyward Sonnet</span> suffer an additional 12% <span style="color:#80FFD7FF">Anemo RES</span> and Physical RES decrease while airborne.
+ */
+export interface BreezeOfReminiscence {
+  [k: string]: unknown;
+}
+/**
+ * When Venti picks up an Elemental Orb or Particle, he receives a 25% <span style="color:#80FFD7FF">Anemo DMG Bonus</span> for 10s.
+ */
+export interface HurricaneOfFreedom {
+  /**
+   * Whether the effect is enabled.
+   */
+  activated?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * Targets who take DMG from <span style="color:#FFD780FF">Wind's Grand Ode</span> have their <span style="color:#80FFD7FF">Anemo RES</span> decreased by 20%.
+ * If an Elemental Absorption occurred, then their RES towards the corresponding Element is also decreased by 20%.
+ */
+export interface StormOfDefiance {
+  [k: string]: unknown;
+}
 /**
  * The buffs that apply to the team characters.
  */
@@ -151,90 +253,237 @@ export interface TeamCharacter {
   klee?: Klee2;
   amber?: Amber2;
   traveler_anemo?: TravelerAnemo2;
+  venti?: Venti2;
   [k: string]: unknown;
 }
 /**
  * Lisa
  */
 export interface Lisa2 {
-  a4?: StaticElectricityField;
+  a4?: StaticElectricityField1;
+  c2?: ElectromagneticField1;
 }
 /**
  * Opponents hit by <span style="color:#FFD780FF">Lightning Rose</span> have their DEF decreased by 15% for 10s.
  */
-export interface StaticElectricityField {
+export interface StaticElectricityField1 {
   /**
    * Whether the effect is enabled.
    */
-  enabled: boolean;
+  activated?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * Holding <span style="color:#FFD780FF">Violet Arc</span> has the following effects:
+ * ·Increases DEF by 25%.
+ * ·Increases Lisa's resistance to interruption.
+ */
+export interface ElectromagneticField1 {
   [k: string]: unknown;
 }
 /**
  * Eula
  */
-export interface Eula2 {}
+export interface Eula2 {
+  skill?: IcetideVortex1;
+  c1?: TidalIllusion1;
+  c5?: ChivalricQuality1;
+}
+/**
+ * Sharp frost, swift blade.
+ *
+ * <span style="color:#FFD780FF">Tap/Press</span>
+ * Slashes swiftly, dealing <span style="color:#99FFFFFF">Cryo DMG</span>.
+ * When it hits an opponent, Eula gains a stack of Grimheart that stacks up to 2 times. These stacks can only be gained once every 0.3s.
+ *
+ * <span style="color:#FFD780FF">Grimheart</span>
+ * Increases Eula's resistance to interruption and DEF.
+ *
+ * <span style="color:#FFD780FF">Hold</span>
+ * Wielding her sword, Eula consumes all the stacks of Grimheart and lashes forward, dealing <span style="color:#99FFFFFF">AoE Cryo DMG</span> to opponents in front of her.
+ * If Grimheart stacks are consumed, surrounding opponents will have their Physical RES and <span style="color:#99FFFFFF">Cryo RES</span> decreased.
+ * Each consumed stack of Grimheart will be converted into an Icewhirl Brand that deals <span style="color:#99FFFFFF">Cryo DMG</span> to nearby opponents.
+ *
+ * <i>"So the waves roiled, swallowing the crown of the nobles. And ever after did each drop amidst the icy waves reflect a golden crown, each and every droplet of the spray shining with its light."</i>
+ */
+export interface IcetideVortex1 {
+  /**
+   * Grimheart stacks are consumed
+   */
+  consumed_stacks?: {
+    /**
+     * Consumed stacks of Grimheart
+     */
+    stacks: number;
+    /**
+     * Skill level of Grimheart
+     */
+    skill_level: number;
+    [k: string]: unknown;
+  };
+  [k: string]: unknown;
+}
+/**
+ * Every time <span style="color:#FFD780FF">Icetide Vortex</span>'s Grimheart stacks are consumed, Eula's Physical DMG is increased by 30% for 6s.
+ * Each stack consumed will increase the duration of this effect by 6s up to a maximum of 18s.
+ */
+export interface TidalIllusion1 {
+  [k: string]: unknown;
+}
+/**
+ * Increases the Level of <span style="color:#FFD780FF">Icetide Vortex</span> by 3.
+ * Maximum upgrade level is 15.
+ */
+export interface ChivalricQuality1 {
+  [k: string]: unknown;
+}
 /**
  * Kaeya
  */
-export interface Kaeya2 {}
+export interface Kaeya2 {
+  c1?: ExcellentBlood1;
+}
+/**
+ * The CRIT Rate of Kaeya's Normal and Charge Attacks against opponents affected by <span style="color:#99FFFFFF">Cryo</span> is increased by 15%.
+ */
+export interface ExcellentBlood1 {
+  [k: string]: unknown;
+}
 /**
  * Klee
  */
 export interface Klee2 {
-  c2?: ExplosiveFrags;
-  c6?: BlazingDelight;
+  a1?: PoundingSurprise1;
+  c2?: ExplosiveFrags1;
+  c6?: BlazingDelight1;
+}
+/**
+ * When <span style="color:#FFD780FF">Jumpy Dumpty</span> and Normal Attacks deal DMG, Klee has a 50% chance to obtain an Explosive Spark.
+ * This Explosive Spark is consumed by the next Charged Attack, which costs no Stamina and deals 50% increased DMG.
+ */
+export interface PoundingSurprise1 {
+  [k: string]: unknown;
 }
 /**
  * Being hit by <span style="color:#FFD780FF">Jumpy Dumpty</span>'s mines decreases opponents' DEF by 23% for 10s.
  */
-export interface ExplosiveFrags {
+export interface ExplosiveFrags1 {
   /**
    * Whether the effect is enabled.
    */
-  enabled: boolean;
+  activated?: boolean;
   [k: string]: unknown;
 }
 /**
  * While under the effects of <span style="color:#FFD780FF">Sparks 'n' Splash</span>, Klee will regenerate 3 Energy for all members of the party (excluding Klee) every 3s.
  * When <span style="color:#FFD780FF">Sparks 'n' Splash</span> is used, all party members will gain a 10% <span style="color:#FF9999FF">Pyro DMG Bonus</span> for 25s.
  */
-export interface BlazingDelight {
+export interface BlazingDelight1 {
   /**
    * Whether the effect is enabled.
    */
-  enabled: boolean;
+  activated?: boolean;
   [k: string]: unknown;
 }
 /**
  * Amber
  */
 export interface Amber2 {
-  c6?: Wildfire;
+  a1?: EveryArrowFindsItsTarget1;
+  a4?: PreciseShot1;
+  c2?: BunnyTriggered1;
+  c6?: Wildfire1;
+}
+/**
+ * Increases the CRIT Rate of <span style="color:#FFD780FF">Fiery Rain</span> by 10% and widens its AoE by 30%.
+ */
+export interface EveryArrowFindsItsTarget1 {
+  [k: string]: unknown;
+}
+/**
+ * Aimed Shot hits on weak points increase ATK by 15% for 10s.
+ */
+export interface PreciseShot1 {
+  [k: string]: unknown;
+}
+/**
+ * Baron Bunny, new and improved! Hitting Baron Bunny's foot with a fully-charged Aimed Shot manually detonates it.
+ * Explosion via manual detonation deals 200% additional DMG.
+ */
+export interface BunnyTriggered1 {
+  [k: string]: unknown;
 }
 /**
  * <span style="color:#FFD780FF">Fiery Rain</span> increases all party members' Movement SPD by 15% and ATK by 15% for 10s.
  */
-export interface Wildfire {
+export interface Wildfire1 {
   /**
    * Whether the effect is enabled.
    */
-  enabled: boolean;
+  activated?: boolean;
   [k: string]: unknown;
 }
 /**
  * Traveler (Anemo)
  */
 export interface TravelerAnemo2 {
-  c6?: IntertwinedWinds;
+  c2?: UprisingWhirlwind1;
+  c6?: IntertwinedWinds1;
+}
+/**
+ * Increases Energy Recharge by 16%.
+ */
+export interface UprisingWhirlwind1 {
+  [k: string]: unknown;
 }
 /**
  * Targets who take DMG from <span style="color:#FFD780FF">Gust Surge</span> have their <span style="color:#80FFD7FF">Anemo RES</span> decreased by 20%.
  * If an Elemental Absorption occurred, then their RES towards the corresponding Element is also decreased by 20%.
  */
-export interface IntertwinedWinds {
+export interface IntertwinedWinds1 {
   /**
-   * The element of the buff. If the buff is not elemental, this property should be null.
+   * The element type Gust Surge absorbed. If the element is not absorbed, this property is anemo. If enemy is not hit by the burst, this property is null.
    */
-  element: null | "anemo" | "pyro" | "cyro" | "hydro" | "electro";
+  absorbed_element?: null | "anemo" | "pyro" | "cyro" | "hydro" | "electro";
+  [k: string]: unknown;
+}
+/**
+ * Venti
+ */
+export interface Venti2 {
+  c2?: BreezeOfReminiscence1;
+  c4?: HurricaneOfFreedom1;
+  c6?: StormOfDefiance1;
+}
+/**
+ * <span style="color:#FFD780FF">Skyward Sonnet</span> decreases opponents' <span style="color:#80FFD7FF">Anemo RES</span> and Physical RES by 12% for 10s.
+ * Opponents launched by <span style="color:#FFD780FF">Skyward Sonnet</span> suffer an additional 12% <span style="color:#80FFD7FF">Anemo RES</span> and Physical RES decrease while airborne.
+ */
+export interface BreezeOfReminiscence1 {
+  /**
+   * Whether the burst hit the enemy.
+   */
+  burst_hit?: boolean;
+  /**
+   * Whether the enemy is launched by this burst.
+   */
+  burst_launched?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * When Venti picks up an Elemental Orb or Particle, he receives a 25% <span style="color:#80FFD7FF">Anemo DMG Bonus</span> for 10s.
+ */
+export interface HurricaneOfFreedom1 {
+  [k: string]: unknown;
+}
+/**
+ * Targets who take DMG from <span style="color:#FFD780FF">Wind's Grand Ode</span> have their <span style="color:#80FFD7FF">Anemo RES</span> decreased by 20%.
+ * If an Elemental Absorption occurred, then their RES towards the corresponding Element is also decreased by 20%.
+ */
+export interface StormOfDefiance1 {
+  /**
+   * The element type Wind's Grand Ode absorbed. If the element is not absorbed, this property is anemo. If enemy is not hit by the burst, this property is null.
+   */
+  absorbed_element?: null | "anemo" | "pyro" | "cyro" | "hydro" | "electro";
   [k: string]: unknown;
 }
