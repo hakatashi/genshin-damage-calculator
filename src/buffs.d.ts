@@ -8,13 +8,29 @@
 /**
  * The buffs that apply to the character itself.
  */
-export type Character = Lisa | Eula | Kaeya | Klee | Amber | TravelerAnemo | Venti;
+export type Character =
+  | Lisa
+  | Eula
+  | Kaeya
+  | Klee
+  | Amber
+  | TravelerAnemo
+  | Venti
+  | Bennett
+  | Jean
+  | Sucrose
+  | Rosaria
+  | Barbara
+  | Mona
+  | Fischl
+  | Noelle
+  | Diluc;
 
 /**
  * Buffs that apply to the character. The buffs are applied after the calculations of character properties.
  */
 export interface Buffs {
-  character?: Character;
+  character: Character;
   team_characters?: TeamCharacter;
   [k: string]: unknown;
 }
@@ -38,7 +54,7 @@ export interface StaticElectricityField {
  */
 export interface ElectromagneticField {
   /**
-   * Whether the effect is enabled.
+   * Whether the effect is activated.
    */
   activated?: boolean;
   [k: string]: unknown;
@@ -81,7 +97,7 @@ export interface IcetideVortex {
  */
 export interface TidalIllusion {
   /**
-   * Whether the effect is enabled.
+   * Whether the effect is activated.
    */
   activated?: boolean;
   [k: string]: unknown;
@@ -92,7 +108,7 @@ export interface TidalIllusion {
  */
 export interface ChivalricQuality {
   /**
-   * Whether the effect is enabled.
+   * Whether the effect is activated.
    */
   activated?: boolean;
   [k: string]: unknown;
@@ -108,7 +124,7 @@ export interface Kaeya1 {
  */
 export interface ExcellentBlood {
   /**
-   * Whether the effect is enabled.
+   * Whether the effect is activated.
    */
   activated?: boolean;
   [k: string]: unknown;
@@ -127,7 +143,7 @@ export interface Klee1 {
  */
 export interface PoundingSurprise {
   /**
-   * Whether the effect is enabled.
+   * Whether the effect is activated.
    */
   activated?: boolean;
   [k: string]: unknown;
@@ -159,7 +175,7 @@ export interface Amber1 {
  */
 export interface EveryArrowFindsItsTarget {
   /**
-   * Whether the effect is enabled.
+   * Whether the effect is activated.
    */
   activated?: boolean;
   [k: string]: unknown;
@@ -169,7 +185,7 @@ export interface EveryArrowFindsItsTarget {
  */
 export interface PreciseShot {
   /**
-   * Whether the effect is enabled.
+   * Whether the effect is activated.
    */
   activated?: boolean;
   [k: string]: unknown;
@@ -180,7 +196,7 @@ export interface PreciseShot {
  */
 export interface BunnyTriggered {
   /**
-   * Whether the effect is enabled.
+   * Whether the effect is activated.
    */
   activated?: boolean;
   [k: string]: unknown;
@@ -231,7 +247,7 @@ export interface BreezeOfReminiscence {
  */
 export interface HurricaneOfFreedom {
   /**
-   * Whether the effect is enabled.
+   * Whether the effect is activated.
    */
   activated?: boolean;
   [k: string]: unknown;
@@ -241,6 +257,336 @@ export interface HurricaneOfFreedom {
  * If an Elemental Absorption occurred, then their RES towards the corresponding Element is also decreased by 20%.
  */
 export interface StormOfDefiance {
+  [k: string]: unknown;
+}
+export interface Bennett {
+  bennett: Bennett1;
+}
+export interface Bennett1 {
+  burst?: FantasticVoyage;
+  c2?: ImpasseConqueror;
+  c6?: FireVenturesWithMe;
+}
+/**
+ * <p>Bennett performs a jumping attack that deals <span style="color: rgb(255, 153, 153)">Pyro DMG</span>, creating an Inspiration Field.<br><br><span style="color: rgb(255, 215, 128)">Inspiration Field</span><br>· If the health of a character within the AoE is equal to or falls below 70%, their health will continuously regenerate. The amount of HP restored scales off Bennett's Max HP.<br>· If the health of a character within the AoE is higher than 70%, they gain an ATK Bonus that is based on Bennett's Base ATK.<br>· Imbues characters within the AoE with <span style="color: rgb(255, 153, 153)">Pyro</span>.<br><br><em>Benny's Adventure Team's adventures are always fraught with unexpected danger. However, Bennett is more inclined to call them "journeys full of wonder, excitement, and beauty."</em></p>
+ */
+export interface FantasticVoyage {
+  [k: string]: unknown;
+}
+/**
+ * When Bennett's HP falls below 70%, his Energy Recharge is increased by 30%.
+ */
+export interface ImpasseConqueror {
+  /**
+   * Whether the effect is activated.
+   */
+  activated?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * Sword, Claymore, or Polearm-wielding characters inside <span style="color:#FFD780FF">Fantastic Voyage</span>'s radius gain a 15% <span style="color:#FF9999FF">Pyro DMG Bonus</span> and their weapons are infused with <span style="color:#FF9999FF">Pyro</span>.
+ */
+export interface FireVenturesWithMe {
+  [k: string]: unknown;
+}
+export interface Jean {
+  jean: Jean1;
+}
+export interface Jean1 {
+  c1?: SpiralingTempest;
+  c4?: LandsOfDandelion;
+}
+/**
+ * Increases the pulling speed of <span style="color:#FFD780FF">Gale Blade</span> after holding for more than 1s, and increases the DMG dealt by 40%.
+ */
+export interface SpiralingTempest {
+  /**
+   * Whether the effect is activated.
+   */
+  activated?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * Within the Field created by <span style="color:#FFD780FF">Dandelion Breeze</span>, all opponents have their <span style="color:#80FFD7FF">Anemo RES</span> decreased by 40%.
+ */
+export interface LandsOfDandelion {
+  [k: string]: unknown;
+}
+export interface Sucrose {
+  sucrose: Sucrose1;
+}
+export interface Sucrose1 {
+  a1?: CatalystConversion;
+  a4?: MollisFavonius;
+  c6?: ChaoticEntropy;
+}
+/**
+ * When Sucrose triggers a Swirl reaction, all characters in the party with the matching element (excluding Sucrose) have their Elemental Mastery increased by 50 for 8s.
+ */
+export interface CatalystConversion {
+  [k: string]: unknown;
+}
+/**
+ * When <span style="color:#FFD780FF">Astable Anemohypostasis Creation - 6308</span> or <span style="color:#FFD780FF">Forbidden Creation - Isomer 75 / Type II</span> hits an opponent, increases all party members' (excluding Sucrose) Elemental Mastery by an amount equal to 20% of Sucrose's Elemental Mastery for 8s.
+ */
+export interface MollisFavonius {
+  [k: string]: unknown;
+}
+/**
+ * If <span style="color:#FFD780FF">Forbidden Creation - Isomer 75 / Type II</span> triggers an Elemental Absorption, all party members gain a 20% Elemental DMG Bonus for the corresponding absorbed element during its duration.
+ */
+export interface ChaoticEntropy {
+  [k: string]: unknown;
+}
+export interface Rosaria {
+  rosaria: Rosaria1;
+}
+export interface Rosaria1 {
+  a1?: ReginaProbationum;
+  a4?: ShadowSamaritan;
+  c1?: UnholyRevelation;
+  c6?: DivineRetribution;
+}
+/**
+ * When Rosaria strikes an opponent from behind using <span style="color:#FFD780FF">Ravaging Confession</span>, Rosaria's CRIT Rate increases by 12% for 5s.
+ */
+export interface ReginaProbationum {
+  /**
+   * Whether the effect is activated.
+   */
+  activated?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * Casting <span style="color:#FFD780FF">Rites of Termination</span> increases CRIT Rate of all nearby party members (except Rosaria herself) by 15% of Rosaria's CRIT Rate for 10s.
+ * CRIT Rate Bonus gained this way cannot exceed 15%.
+ */
+export interface ShadowSamaritan {
+  [k: string]: unknown;
+}
+/**
+ * When Rosaria deals a CRIT Hit, her ATK SPD increases by 10% and her Normal Attack DMG increases by 10% for 4s.
+ */
+export interface UnholyRevelation {
+  /**
+   * Whether the effect is activated.
+   */
+  activated?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * <span style="color:#FFD780FF">Rites of Termination</span>'s attack decreases opponents' Physical RES by 20% for 10s.
+ */
+export interface DivineRetribution {
+  [k: string]: unknown;
+}
+export interface Barbara {
+  barbara: Barbara1;
+}
+export interface Barbara1 {
+  c2?: VitalityBurst;
+}
+/**
+ * Decreases the CD of <span style="color:#FFD780FF">Let the Show Begin♪</span> by 15%.
+ * During the ability's duration, your active character gains a 15% <span style="color:#80C0FFFF">Hydro DMG Bonus</span>.
+ */
+export interface VitalityBurst {
+  [k: string]: unknown;
+}
+export interface Mona {
+  mona: Mona1;
+}
+export interface Mona1 {
+  burst?: IllusoryTorrent;
+  a4?: WaterborneDestiny;
+  c1?: ProphecyOfSubmersion;
+  c4?: ProphecyOfOblivion;
+  c6?: RhetoricsOfCalamitas;
+}
+/**
+ * <span style="color:#FFD780FF">Alternate Sprint</span>
+ * Mona cloaks herself within the water's flow, consuming Stamina to move rapidly.
+ *
+ * When under the effect of Illusory Torrent, Mona can move at high speed on water.
+ * Applies the <span style="color:#80C0FFFF">Wet</span> status to nearby opponents when she reappears.
+ *
+ * <i>This is something that Mona can do, but her teacher cannot. Well, but it's not as if her teacher would pursue any matter concerning Hydro Visions anyway...</i>
+ */
+export interface IllusoryTorrent {
+  [k: string]: unknown;
+}
+/**
+ * Increases Mona's <span style="color:#80C0FFFF">Hydro DMG Bonus</span> by a degree equivalent to 20% of her Energy Recharge rate.
+ */
+export interface WaterborneDestiny {
+  ascention_enabled?: {
+    /**
+     * Whether this ascention bonus is activated.
+     */
+    activated: boolean;
+    /**
+     * Energy Recharge of Mona.
+     */
+    energy_recharge: number;
+    [k: string]: unknown;
+  };
+  [k: string]: unknown;
+}
+/**
+ * <p>When any of your own party members hits an opponent affected by an Omen, the effects of <span style="color: rgb(128, 192, 255)">Hydro-related Elemental Reactions</span> are enhanced for 8s:<br>· Electro-Charged DMG increases by 15%.<br>· Vaporize DMG increases by 15%.<br>· Hydro Swirl DMG increases by 15%.<br>· Frozen duration is extended by 15%.</p>
+ */
+export interface ProphecyOfSubmersion {
+  /**
+   * Whether the effect is activated.
+   */
+  activated?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * When any party member attacks an opponent affected by an Omen, their CRIT Rate is increased by 15%.
+ */
+export interface ProphecyOfOblivion {
+  [k: string]: unknown;
+}
+/**
+ * Upon entering <span style="color:#FFD780FF">Illusory Torrent</span>, Mona gains a 60% increase to the DMG of her next Charged Attack per second of movement.
+ * A maximum DMG Bonus of 180% can be achieved in this manner. The effect lasts for no more than 8s.
+ */
+export interface RhetoricsOfCalamitas {
+  /**
+   * The number of stacks.
+   */
+  stacks?: number;
+  [k: string]: unknown;
+}
+export interface Fischl {
+  fischl: Fischl1;
+}
+export interface Fischl1 {}
+export interface Noelle {
+  noelle: Noelle1;
+}
+export interface Noelle1 {
+  burst?: SweepingTime;
+  c2?: CombatMaid;
+  c6?: MustBeSpotless;
+}
+/**
+ * Gathering the strength of stone around her weapon, Noelle strikes the opponents surrounding her within a large AoE, dealing <span style="color:#FFE699FF">Geo DMG</span>.
+ * Afterwards, Noelle gains the following effects:
+ * ·Larger attack AoE.
+ * ·Converts attack DMG to <span style="color:#FFE699FF">Geo DMG</span> that cannot be overridden by any other elemental infusion.
+ * ·Increased ATK that scales based on her DEF.
+ *
+ * <i>Sometimes, it's not just dust that needs sweeping...</i>
+ */
+export interface SweepingTime {
+  burst_casted?: {
+    /**
+     * Whether Sweeping Time is activated.
+     */
+    activated: boolean;
+    /**
+     * DEF status of Noelle.
+     */
+    def: number;
+    /**
+     * Skill level of Sweeping Time.
+     */
+    skill_level: number;
+    [k: string]: unknown;
+  };
+  [k: string]: unknown;
+}
+/**
+ * Decreases the Stamina Consumption of Noelle's Charged Attacks by 20% and increases her Charged Attack DMG by 15%.
+ */
+export interface CombatMaid {
+  /**
+   * Whether the effect is activated.
+   */
+  activated?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * <span style="color:#FFD780FF">Sweeping Time</span> increases Noelle's ATK by an additional 50% of her DEF.
+ * Additionally, every opponent defeated during the skill's duration adds 1s to the duration, up to 10s.
+ */
+export interface MustBeSpotless {
+  burst_casted?: {
+    /**
+     * Whether Sweeping Time is activated.
+     */
+    activated: boolean;
+    /**
+     * DEF status of Noelle.
+     */
+    def: number;
+    [k: string]: unknown;
+  };
+  [k: string]: unknown;
+}
+export interface Diluc {
+  diluc: Diluc1;
+}
+export interface Diluc1 {
+  a4?: BlessingOfPhoenix;
+  c1?: Conviction;
+  c2?: SearingEmber;
+  c4?: FlowingFlame;
+  c6?: FlamingSwordNemesisOfTheDark;
+}
+/**
+ * The <span style="color:#FF9999FF">Pyro Infusion</span> provided by <span style="color:#FFD780FF">Dawn</span> lasts for 4s longer. Additionally, Diluc gains 20% <span style="color:#FF9999FF">Pyro DMG Bonus</span> during the duration of this effect.
+ */
+export interface BlessingOfPhoenix {
+  /**
+   * Whether the effect is activated.
+   */
+  activated?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * Diluc deals 15% more DMG to opponents whose HP is above 50%.
+ */
+export interface Conviction {
+  /**
+   * Whether the effect is activated.
+   */
+  activated?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * When Diluc takes DMG, his ATK increases by 10% and his ATK SPD increases by 5%. Lasts for 10s.
+ * This effect can stack up to 3 times and can only occur once every 1.5s.
+ */
+export interface SearingEmber {
+  /**
+   * The number of stacks.
+   */
+  stacks?: number;
+  [k: string]: unknown;
+}
+/**
+ * Casting <span style="color:#FFD780FF">Searing Onslaught</span> in rhythm greatly increases damage dealt.
+ * 2s after casting <span style="color:#FFD780FF">Searing Onslaught</span>, casting the next Searing Onslaught in the combo deals 40% additional DMG. This effect lasts for 2s.
+ */
+export interface FlowingFlame {
+  /**
+   * Whether the effect is activated.
+   */
+  activated?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * After casting <span style="color:#FFD780FF">Searing Onslaught</span>, the next 2 Normal Attacks within the next 6s will have their DMG and ATK SPD increased by 30%.
+ * Additionally, Searing Onslaught will not interrupt the Normal Attack combo.
+ */
+export interface FlamingSwordNemesisOfTheDark {
+  /**
+   * Whether the effect is activated.
+   */
+  activated?: boolean;
   [k: string]: unknown;
 }
 /**
@@ -254,6 +600,15 @@ export interface TeamCharacter {
   amber?: Amber2;
   traveler_anemo?: TravelerAnemo2;
   venti?: Venti2;
+  bennett?: Bennett2;
+  jean?: Jean2;
+  sucrose?: Sucrose2;
+  rosaria?: Rosaria2;
+  barbara?: Barbara2;
+  mona?: Mona2;
+  fischl?: Fischl2;
+  noelle?: Noelle2;
+  diluc?: Diluc2;
   [k: string]: unknown;
 }
 /**
@@ -268,7 +623,7 @@ export interface Lisa2 {
  */
 export interface StaticElectricityField1 {
   /**
-   * Whether the effect is enabled.
+   * Whether the effect is activated.
    */
   activated?: boolean;
   [k: string]: unknown;
@@ -369,7 +724,7 @@ export interface PoundingSurprise1 {
  */
 export interface ExplosiveFrags1 {
   /**
-   * Whether the effect is enabled.
+   * Whether the effect is activated.
    */
   activated?: boolean;
   [k: string]: unknown;
@@ -380,7 +735,7 @@ export interface ExplosiveFrags1 {
  */
 export interface BlazingDelight1 {
   /**
-   * Whether the effect is enabled.
+   * Whether the effect is activated.
    */
   activated?: boolean;
   [k: string]: unknown;
@@ -418,7 +773,7 @@ export interface BunnyTriggered1 {
  */
 export interface Wildfire1 {
   /**
-   * Whether the effect is enabled.
+   * Whether the effect is activated.
    */
   activated?: boolean;
   [k: string]: unknown;
@@ -485,5 +840,333 @@ export interface StormOfDefiance1 {
    * The element type Wind's Grand Ode absorbed. If the element is not absorbed, this property is anemo. If enemy is not hit by the burst, this property is null.
    */
   absorbed_element?: null | "anemo" | "pyro" | "cyro" | "hydro" | "electro";
+  [k: string]: unknown;
+}
+/**
+ * Bennett
+ */
+export interface Bennett2 {
+  burst?: FantasticVoyage1;
+  c2?: ImpasseConqueror1;
+  c6?: FireVenturesWithMe1;
+}
+/**
+ * <p>Bennett performs a jumping attack that deals <span style="color: rgb(255, 153, 153)">Pyro DMG</span>, creating an Inspiration Field.<br><br><span style="color: rgb(255, 215, 128)">Inspiration Field</span><br>· If the health of a character within the AoE is equal to or falls below 70%, their health will continuously regenerate. The amount of HP restored scales off Bennett's Max HP.<br>· If the health of a character within the AoE is higher than 70%, they gain an ATK Bonus that is based on Bennett's Base ATK.<br>· Imbues characters within the AoE with <span style="color: rgb(255, 153, 153)">Pyro</span>.<br><br><em>Benny's Adventure Team's adventures are always fraught with unexpected danger. However, Bennett is more inclined to call them "journeys full of wonder, excitement, and beauty."</em></p>
+ */
+export interface FantasticVoyage1 {
+  /**
+   * The buff that applies to characters within the burst AoE.
+   */
+  within_aoe?: {
+    /**
+     * Whether the character is within the AoE.
+     */
+    activated: boolean;
+    /**
+     * Base ATK of Bennett.
+     */
+    base_atk: number;
+    /**
+     * Skill level of Fantastic Voyage
+     */
+    skill_level: number;
+    /**
+     * Number of constellation of Bennett
+     */
+    constellation: number;
+    [k: string]: unknown;
+  };
+  [k: string]: unknown;
+}
+/**
+ * When Bennett's HP falls below 70%, his Energy Recharge is increased by 30%.
+ */
+export interface ImpasseConqueror1 {
+  [k: string]: unknown;
+}
+/**
+ * Sword, Claymore, or Polearm-wielding characters inside <span style="color:#FFD780FF">Fantastic Voyage</span>'s radius gain a 15% <span style="color:#FF9999FF">Pyro DMG Bonus</span> and their weapons are infused with <span style="color:#FF9999FF">Pyro</span>.
+ */
+export interface FireVenturesWithMe1 {
+  /**
+   * Whether the effect is activated.
+   */
+  activated?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * Jean
+ */
+export interface Jean2 {
+  c1?: SpiralingTempest1;
+  c4?: LandsOfDandelion1;
+}
+/**
+ * Increases the pulling speed of <span style="color:#FFD780FF">Gale Blade</span> after holding for more than 1s, and increases the DMG dealt by 40%.
+ */
+export interface SpiralingTempest1 {
+  [k: string]: unknown;
+}
+/**
+ * Within the Field created by <span style="color:#FFD780FF">Dandelion Breeze</span>, all opponents have their <span style="color:#80FFD7FF">Anemo RES</span> decreased by 40%.
+ */
+export interface LandsOfDandelion1 {
+  /**
+   * Whether the effect is activated.
+   */
+  activated?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * Sucrose
+ */
+export interface Sucrose2 {
+  a1?: CatalystConversion1;
+  a4?: MollisFavonius1;
+  c6?: ChaoticEntropy1;
+}
+/**
+ * When Sucrose triggers a Swirl reaction, all characters in the party with the matching element (excluding Sucrose) have their Elemental Mastery increased by 50 for 8s.
+ */
+export interface CatalystConversion1 {
+  /**
+   * Whether the effect is activated.
+   */
+  activated?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * When <span style="color:#FFD780FF">Astable Anemohypostasis Creation - 6308</span> or <span style="color:#FFD780FF">Forbidden Creation - Isomer 75 / Type II</span> hits an opponent, increases all party members' (excluding Sucrose) Elemental Mastery by an amount equal to 20% of Sucrose's Elemental Mastery for 8s.
+ */
+export interface MollisFavonius1 {
+  skill_hit?: {
+    /**
+     * Whether the enemy is hit by Elemental Skill or Elemental Burst.
+     */
+    activated: boolean;
+    /**
+     * Elemental Mastery of Sucrose.
+     */
+    elemental_mastery: number;
+    [k: string]: unknown;
+  };
+  [k: string]: unknown;
+}
+/**
+ * If <span style="color:#FFD780FF">Forbidden Creation - Isomer 75 / Type II</span> triggers an Elemental Absorption, all party members gain a 20% Elemental DMG Bonus for the corresponding absorbed element during its duration.
+ */
+export interface ChaoticEntropy1 {
+  /**
+   * The element type Forbidden Creation - Isomer 75 / Type II absorbed. If the element is not absorbed, this property is null.
+   */
+  absorbed_element?: null | "pyro" | "cyro" | "hydro" | "electro";
+  [k: string]: unknown;
+}
+/**
+ * Rosaria
+ */
+export interface Rosaria2 {
+  a1?: ReginaProbationum1;
+  a4?: ShadowSamaritan1;
+  c1?: UnholyRevelation1;
+  c6?: DivineRetribution1;
+}
+/**
+ * When Rosaria strikes an opponent from behind using <span style="color:#FFD780FF">Ravaging Confession</span>, Rosaria's CRIT Rate increases by 12% for 5s.
+ */
+export interface ReginaProbationum1 {
+  [k: string]: unknown;
+}
+/**
+ * Casting <span style="color:#FFD780FF">Rites of Termination</span> increases CRIT Rate of all nearby party members (except Rosaria herself) by 15% of Rosaria's CRIT Rate for 10s.
+ * CRIT Rate Bonus gained this way cannot exceed 15%.
+ */
+export interface ShadowSamaritan1 {
+  burst_casted?: {
+    /**
+     * Whether Rites of Termination was casted.
+     */
+    activated: boolean;
+    /**
+     * Crit. Rate of Rosaria.
+     */
+    crit_rate: number;
+    [k: string]: unknown;
+  };
+  [k: string]: unknown;
+}
+/**
+ * When Rosaria deals a CRIT Hit, her ATK SPD increases by 10% and her Normal Attack DMG increases by 10% for 4s.
+ */
+export interface UnholyRevelation1 {
+  [k: string]: unknown;
+}
+/**
+ * <span style="color:#FFD780FF">Rites of Termination</span>'s attack decreases opponents' Physical RES by 20% for 10s.
+ */
+export interface DivineRetribution1 {
+  /**
+   * Whether the effect is activated.
+   */
+  activated?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * Barbara
+ */
+export interface Barbara2 {
+  c2?: VitalityBurst1;
+}
+/**
+ * Decreases the CD of <span style="color:#FFD780FF">Let the Show Begin♪</span> by 15%.
+ * During the ability's duration, your active character gains a 15% <span style="color:#80C0FFFF">Hydro DMG Bonus</span>.
+ */
+export interface VitalityBurst1 {
+  /**
+   * Whether the effect is activated.
+   */
+  activated?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * Mona
+ */
+export interface Mona2 {
+  burst?: IllusoryTorrent1;
+  a4?: WaterborneDestiny1;
+  c1?: ProphecyOfSubmersion1;
+  c4?: ProphecyOfOblivion1;
+  c6?: RhetoricsOfCalamitas1;
+}
+/**
+ * <span style="color:#FFD780FF">Alternate Sprint</span>
+ * Mona cloaks herself within the water's flow, consuming Stamina to move rapidly.
+ *
+ * When under the effect of Illusory Torrent, Mona can move at high speed on water.
+ * Applies the <span style="color:#80C0FFFF">Wet</span> status to nearby opponents when she reappears.
+ *
+ * <i>This is something that Mona can do, but her teacher cannot. Well, but it's not as if her teacher would pursue any matter concerning Hydro Visions anyway...</i>
+ */
+export interface IllusoryTorrent1 {
+  burst_casted?: {
+    /**
+     * Whether Stellaris Phantasm was casted to enemy.
+     */
+    activated: boolean;
+    /**
+     * Skill level of Stellaris Phantasm.
+     */
+    skill_level: number;
+    [k: string]: unknown;
+  };
+  [k: string]: unknown;
+}
+/**
+ * Increases Mona's <span style="color:#80C0FFFF">Hydro DMG Bonus</span> by a degree equivalent to 20% of her Energy Recharge rate.
+ */
+export interface WaterborneDestiny1 {
+  [k: string]: unknown;
+}
+/**
+ * <p>When any of your own party members hits an opponent affected by an Omen, the effects of <span style="color: rgb(128, 192, 255)">Hydro-related Elemental Reactions</span> are enhanced for 8s:<br>· Electro-Charged DMG increases by 15%.<br>· Vaporize DMG increases by 15%.<br>· Hydro Swirl DMG increases by 15%.<br>· Frozen duration is extended by 15%.</p>
+ */
+export interface ProphecyOfSubmersion1 {
+  [k: string]: unknown;
+}
+/**
+ * When any party member attacks an opponent affected by an Omen, their CRIT Rate is increased by 15%.
+ */
+export interface ProphecyOfOblivion1 {
+  /**
+   * Whether the effect is activated.
+   */
+  activated?: boolean;
+  [k: string]: unknown;
+}
+/**
+ * Upon entering <span style="color:#FFD780FF">Illusory Torrent</span>, Mona gains a 60% increase to the DMG of her next Charged Attack per second of movement.
+ * A maximum DMG Bonus of 180% can be achieved in this manner. The effect lasts for no more than 8s.
+ */
+export interface RhetoricsOfCalamitas1 {
+  [k: string]: unknown;
+}
+/**
+ * Fischl
+ */
+export interface Fischl2 {}
+/**
+ * Noelle
+ */
+export interface Noelle2 {
+  burst?: SweepingTime1;
+  c2?: CombatMaid1;
+  c6?: MustBeSpotless1;
+}
+/**
+ * Gathering the strength of stone around her weapon, Noelle strikes the opponents surrounding her within a large AoE, dealing <span style="color:#FFE699FF">Geo DMG</span>.
+ * Afterwards, Noelle gains the following effects:
+ * ·Larger attack AoE.
+ * ·Converts attack DMG to <span style="color:#FFE699FF">Geo DMG</span> that cannot be overridden by any other elemental infusion.
+ * ·Increased ATK that scales based on her DEF.
+ *
+ * <i>Sometimes, it's not just dust that needs sweeping...</i>
+ */
+export interface SweepingTime1 {
+  [k: string]: unknown;
+}
+/**
+ * Decreases the Stamina Consumption of Noelle's Charged Attacks by 20% and increases her Charged Attack DMG by 15%.
+ */
+export interface CombatMaid1 {
+  [k: string]: unknown;
+}
+/**
+ * <span style="color:#FFD780FF">Sweeping Time</span> increases Noelle's ATK by an additional 50% of her DEF.
+ * Additionally, every opponent defeated during the skill's duration adds 1s to the duration, up to 10s.
+ */
+export interface MustBeSpotless1 {
+  [k: string]: unknown;
+}
+/**
+ * Diluc
+ */
+export interface Diluc2 {
+  a4?: BlessingOfPhoenix1;
+  c1?: Conviction1;
+  c2?: SearingEmber1;
+  c4?: FlowingFlame1;
+  c6?: FlamingSwordNemesisOfTheDark1;
+}
+/**
+ * The <span style="color:#FF9999FF">Pyro Infusion</span> provided by <span style="color:#FFD780FF">Dawn</span> lasts for 4s longer. Additionally, Diluc gains 20% <span style="color:#FF9999FF">Pyro DMG Bonus</span> during the duration of this effect.
+ */
+export interface BlessingOfPhoenix1 {
+  [k: string]: unknown;
+}
+/**
+ * Diluc deals 15% more DMG to opponents whose HP is above 50%.
+ */
+export interface Conviction1 {
+  [k: string]: unknown;
+}
+/**
+ * When Diluc takes DMG, his ATK increases by 10% and his ATK SPD increases by 5%. Lasts for 10s.
+ * This effect can stack up to 3 times and can only occur once every 1.5s.
+ */
+export interface SearingEmber1 {
+  [k: string]: unknown;
+}
+/**
+ * Casting <span style="color:#FFD780FF">Searing Onslaught</span> in rhythm greatly increases damage dealt.
+ * 2s after casting <span style="color:#FFD780FF">Searing Onslaught</span>, casting the next Searing Onslaught in the combo deals 40% additional DMG. This effect lasts for 2s.
+ */
+export interface FlowingFlame1 {
+  [k: string]: unknown;
+}
+/**
+ * After casting <span style="color:#FFD780FF">Searing Onslaught</span>, the next 2 Normal Attacks within the next 6s will have their DMG and ATK SPD increased by 30%.
+ * Additionally, Searing Onslaught will not interrupt the Normal Attack combo.
+ */
+export interface FlamingSwordNemesisOfTheDark1 {
   [k: string]: unknown;
 }

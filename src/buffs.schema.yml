@@ -15,3 +15,5 @@ properties:
     description: The buffs that apply to the team characters.
     type: object
     properties: {} # Automatically populated
+required:
+  - character

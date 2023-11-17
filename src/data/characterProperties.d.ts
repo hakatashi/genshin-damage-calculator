@@ -5,13 +5,14 @@ type Element = 'anemo' | 'cryo' | 'dendro' | 'electro' | 'geo' | 'hydro' | 'pyro
 interface Buff {
   param: string,
   value: number,
+  is_absolute?: boolean,
   type: 'burst' | 'skill' | 'status',
   attack_name?: string,
 }
 
 interface BaseEffect {
   description?: string,
-  target: 'self' | 'self_persist' | 'team' | 'enemy',
+  target: 'self' | 'self_persist' | 'team' | 'team_excluding_self' | 'enemy',
   buffs: Buff[],
 }
 

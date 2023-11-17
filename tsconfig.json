@@ -18,7 +18,8 @@
     "noImplicitAny": false,
     "noImplicitThis": false,
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true
   },
   "include": ["src/**/*", "__tests__/**/*"]
 }

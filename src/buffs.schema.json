@@ -31,7 +31,7 @@
                     "activated": {
                       "type": "boolean",
                       "default": false,
-                      "description": "Whether the effect is enabled."
+                      "description": "Whether the effect is activated."
                     }
                   }
                 }
@@ -73,7 +73,7 @@
                     "activated": {
                       "type": "boolean",
                       "default": false,
-                      "description": "Whether the effect is enabled."
+                      "description": "Whether the effect is activated."
                     }
                   }
                 },
@@ -85,7 +85,7 @@
                     "activated": {
                       "type": "boolean",
                       "default": false,
-                      "description": "Whether the effect is enabled."
+                      "description": "Whether the effect is activated."
                     }
                   }
                 }
@@ -114,7 +114,7 @@
                     "activated": {
                       "type": "boolean",
                       "default": false,
-                      "description": "Whether the effect is enabled."
+                      "description": "Whether the effect is activated."
                     }
                   }
                 }
@@ -143,7 +143,7 @@
                     "activated": {
                       "type": "boolean",
                       "default": false,
-                      "description": "Whether the effect is enabled."
+                      "description": "Whether the effect is activated."
                     }
                   }
                 },
@@ -184,7 +184,7 @@
                     "activated": {
                       "type": "boolean",
                       "default": false,
-                      "description": "Whether the effect is enabled."
+                      "description": "Whether the effect is activated."
                     }
                   }
                 },
@@ -196,7 +196,7 @@
                     "activated": {
                       "type": "boolean",
                       "default": false,
-                      "description": "Whether the effect is enabled."
+                      "description": "Whether the effect is activated."
                     }
                   }
                 },
@@ -208,7 +208,7 @@
                     "activated": {
                       "type": "boolean",
                       "default": false,
-                      "description": "Whether the effect is enabled."
+                      "description": "Whether the effect is activated."
                     }
                   }
                 },
@@ -278,7 +278,7 @@
                     "activated": {
                       "type": "boolean",
                       "default": false,
-                      "description": "Whether the effect is enabled."
+                      "description": "Whether the effect is activated."
                     }
                   }
                 },
@@ -294,6 +294,456 @@
           },
           "required": [
             "venti"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "title": "Bennett",
+          "properties": {
+            "bennett": {
+              "type": "object",
+              "title": "Bennett",
+              "properties": {
+                "burst": {
+                  "type": "object",
+                  "title": "Fantastic Voyage",
+                  "description": "<p>Bennett performs a jumping attack that deals <span style=\"color: rgb(255, 153, 153)\">Pyro DMG</span>, creating an Inspiration Field.<br><br><span style=\"color: rgb(255, 215, 128)\">Inspiration Field</span><br>· If the health of a character within the AoE is equal to or falls below 70%, their health will continuously regenerate. The amount of HP restored scales off Bennett's Max HP.<br>· If the health of a character within the AoE is higher than 70%, they gain an ATK Bonus that is based on Bennett's Base ATK.<br>· Imbues characters within the AoE with <span style=\"color: rgb(255, 153, 153)\">Pyro</span>.<br><br><em>Benny's Adventure Team's adventures are always fraught with unexpected danger. However, Bennett is more inclined to call them \"journeys full of wonder, excitement, and beauty.\"</em></p>",
+                  "properties": {}
+                },
+                "c2": {
+                  "type": "object",
+                  "title": "Impasse Conqueror",
+                  "description": "When Bennett's HP falls below 70%, his Energy Recharge is increased by 30%.",
+                  "properties": {
+                    "activated": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Whether the effect is activated."
+                    }
+                  }
+                },
+                "c6": {
+                  "type": "object",
+                  "title": "Fire Ventures with Me",
+                  "description": "Sword, Claymore, or Polearm-wielding characters inside <span style=\"color:#FFD780FF\">Fantastic Voyage</span>'s radius gain a 15% <span style=\"color:#FF9999FF\">Pyro DMG Bonus</span> and their weapons are infused with <span style=\"color:#FF9999FF\">Pyro</span>.",
+                  "properties": {}
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "bennett"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "title": "Jean",
+          "properties": {
+            "jean": {
+              "type": "object",
+              "title": "Jean",
+              "properties": {
+                "c1": {
+                  "type": "object",
+                  "title": "Spiraling Tempest",
+                  "description": "Increases the pulling speed of <span style=\"color:#FFD780FF\">Gale Blade</span> after holding for more than 1s, and increases the DMG dealt by 40%.",
+                  "properties": {
+                    "activated": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Whether the effect is activated."
+                    }
+                  }
+                },
+                "c4": {
+                  "type": "object",
+                  "title": "Lands of Dandelion",
+                  "description": "Within the Field created by <span style=\"color:#FFD780FF\">Dandelion Breeze</span>, all opponents have their <span style=\"color:#80FFD7FF\">Anemo RES</span> decreased by 40%.",
+                  "properties": {}
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "jean"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "title": "Sucrose",
+          "properties": {
+            "sucrose": {
+              "type": "object",
+              "title": "Sucrose",
+              "properties": {
+                "a1": {
+                  "type": "object",
+                  "title": "Catalyst Conversion",
+                  "description": "When Sucrose triggers a Swirl reaction, all characters in the party with the matching element (excluding Sucrose) have their Elemental Mastery increased by 50 for 8s.",
+                  "properties": {}
+                },
+                "a4": {
+                  "type": "object",
+                  "title": "Mollis Favonius",
+                  "description": "When <span style=\"color:#FFD780FF\">Astable Anemohypostasis Creation - 6308</span> or <span style=\"color:#FFD780FF\">Forbidden Creation - Isomer 75 / Type II</span> hits an opponent, increases all party members' (excluding Sucrose) Elemental Mastery by an amount equal to 20% of Sucrose's Elemental Mastery for 8s.",
+                  "properties": {}
+                },
+                "c6": {
+                  "type": "object",
+                  "title": "Chaotic Entropy",
+                  "description": "If <span style=\"color:#FFD780FF\">Forbidden Creation - Isomer 75 / Type II</span> triggers an Elemental Absorption, all party members gain a 20% Elemental DMG Bonus for the corresponding absorbed element during its duration.",
+                  "properties": {}
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "sucrose"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "title": "Rosaria",
+          "properties": {
+            "rosaria": {
+              "type": "object",
+              "title": "Rosaria",
+              "properties": {
+                "a1": {
+                  "type": "object",
+                  "title": "Regina Probationum",
+                  "description": "When Rosaria strikes an opponent from behind using <span style=\"color:#FFD780FF\">Ravaging Confession</span>, Rosaria's CRIT Rate increases by 12% for 5s.",
+                  "properties": {
+                    "activated": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Whether the effect is activated."
+                    }
+                  }
+                },
+                "a4": {
+                  "type": "object",
+                  "title": "Shadow Samaritan",
+                  "description": "Casting <span style=\"color:#FFD780FF\">Rites of Termination</span> increases CRIT Rate of all nearby party members (except Rosaria herself) by 15% of Rosaria's CRIT Rate for 10s.\nCRIT Rate Bonus gained this way cannot exceed 15%.",
+                  "properties": {}
+                },
+                "c1": {
+                  "type": "object",
+                  "title": "Unholy Revelation",
+                  "description": "When Rosaria deals a CRIT Hit, her ATK SPD increases by 10% and her Normal Attack DMG increases by 10% for 4s.",
+                  "properties": {
+                    "activated": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Whether the effect is activated."
+                    }
+                  }
+                },
+                "c6": {
+                  "type": "object",
+                  "title": "Divine Retribution",
+                  "description": "<span style=\"color:#FFD780FF\">Rites of Termination</span>'s attack decreases opponents' Physical RES by 20% for 10s.",
+                  "properties": {}
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "rosaria"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "title": "Barbara",
+          "properties": {
+            "barbara": {
+              "type": "object",
+              "title": "Barbara",
+              "properties": {
+                "c2": {
+                  "type": "object",
+                  "title": "Vitality Burst",
+                  "description": "Decreases the CD of <span style=\"color:#FFD780FF\">Let the Show Begin♪</span> by 15%.\nDuring the ability's duration, your active character gains a 15% <span style=\"color:#80C0FFFF\">Hydro DMG Bonus</span>.",
+                  "properties": {}
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "barbara"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "title": "Mona",
+          "properties": {
+            "mona": {
+              "type": "object",
+              "title": "Mona",
+              "properties": {
+                "burst": {
+                  "type": "object",
+                  "title": "Illusory Torrent",
+                  "description": "<span style=\"color:#FFD780FF\">Alternate Sprint</span>\nMona cloaks herself within the water's flow, consuming Stamina to move rapidly.\n\nWhen under the effect of Illusory Torrent, Mona can move at high speed on water.\nApplies the <span style=\"color:#80C0FFFF\">Wet</span> status to nearby opponents when she reappears.\n\n<i>This is something that Mona can do, but her teacher cannot. Well, but it's not as if her teacher would pursue any matter concerning Hydro Visions anyway...</i>",
+                  "properties": {}
+                },
+                "a4": {
+                  "type": "object",
+                  "title": "Waterborne Destiny",
+                  "description": "Increases Mona's <span style=\"color:#80C0FFFF\">Hydro DMG Bonus</span> by a degree equivalent to 20% of her Energy Recharge rate.",
+                  "properties": {
+                    "ascention_enabled": {
+                      "type": "object",
+                      "properties": {
+                        "activated": {
+                          "description": "Whether this ascention bonus is activated.",
+                          "type": "boolean"
+                        },
+                        "energy_recharge": {
+                          "description": "Energy Recharge of Mona.",
+                          "type": "number",
+                          "minimum": 0,
+                          "default": 0
+                        }
+                      },
+                      "required": [
+                        "activated",
+                        "energy_recharge"
+                      ]
+                    }
+                  }
+                },
+                "c1": {
+                  "type": "object",
+                  "title": "Prophecy of Submersion",
+                  "description": "<p>When any of your own party members hits an opponent affected by an Omen, the effects of <span style=\"color: rgb(128, 192, 255)\">Hydro-related Elemental Reactions</span> are enhanced for 8s:<br>· Electro-Charged DMG increases by 15%.<br>· Vaporize DMG increases by 15%.<br>· Hydro Swirl DMG increases by 15%.<br>· Frozen duration is extended by 15%.</p>",
+                  "properties": {
+                    "activated": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Whether the effect is activated."
+                    }
+                  }
+                },
+                "c4": {
+                  "type": "object",
+                  "title": "Prophecy of Oblivion",
+                  "description": "When any party member attacks an opponent affected by an Omen, their CRIT Rate is increased by 15%.",
+                  "properties": {}
+                },
+                "c6": {
+                  "type": "object",
+                  "title": "Rhetorics of Calamitas",
+                  "description": "Upon entering <span style=\"color:#FFD780FF\">Illusory Torrent</span>, Mona gains a 60% increase to the DMG of her next Charged Attack per second of movement.\nA maximum DMG Bonus of 180% can be achieved in this manner. The effect lasts for no more than 8s.",
+                  "properties": {
+                    "stacks": {
+                      "type": "integer",
+                      "default": 0,
+                      "maximum": 3,
+                      "description": "The number of stacks."
+                    }
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "mona"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "title": "Fischl",
+          "properties": {
+            "fischl": {
+              "type": "object",
+              "title": "Fischl",
+              "properties": {},
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "fischl"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "title": "Noelle",
+          "properties": {
+            "noelle": {
+              "type": "object",
+              "title": "Noelle",
+              "properties": {
+                "burst": {
+                  "type": "object",
+                  "title": "Sweeping Time",
+                  "description": "Gathering the strength of stone around her weapon, Noelle strikes the opponents surrounding her within a large AoE, dealing <span style=\"color:#FFE699FF\">Geo DMG</span>.\nAfterwards, Noelle gains the following effects:\n·Larger attack AoE.\n·Converts attack DMG to <span style=\"color:#FFE699FF\">Geo DMG</span> that cannot be overridden by any other elemental infusion.\n·Increased ATK that scales based on her DEF.\n\n<i>Sometimes, it's not just dust that needs sweeping...</i>",
+                  "properties": {
+                    "burst_casted": {
+                      "type": "object",
+                      "properties": {
+                        "activated": {
+                          "description": "Whether Sweeping Time is activated.",
+                          "type": "boolean"
+                        },
+                        "def": {
+                          "description": "DEF status of Noelle.",
+                          "type": "integer",
+                          "minimum": 0,
+                          "default": 0
+                        },
+                        "skill_level": {
+                          "description": "Skill level of Sweeping Time.",
+                          "type": "integer",
+                          "minimum": 1,
+                          "maximum": 14,
+                          "default": 1
+                        }
+                      },
+                      "required": [
+                        "activated",
+                        "def",
+                        "skill_level"
+                      ]
+                    }
+                  }
+                },
+                "c2": {
+                  "type": "object",
+                  "title": "Combat Maid",
+                  "description": "Decreases the Stamina Consumption of Noelle's Charged Attacks by 20% and increases her Charged Attack DMG by 15%.",
+                  "properties": {
+                    "activated": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Whether the effect is activated."
+                    }
+                  }
+                },
+                "c6": {
+                  "type": "object",
+                  "title": "Must Be Spotless",
+                  "description": "<span style=\"color:#FFD780FF\">Sweeping Time</span> increases Noelle's ATK by an additional 50% of her DEF.\nAdditionally, every opponent defeated during the skill's duration adds 1s to the duration, up to 10s.",
+                  "properties": {
+                    "burst_casted": {
+                      "type": "object",
+                      "properties": {
+                        "activated": {
+                          "description": "Whether Sweeping Time is activated.",
+                          "type": "boolean"
+                        },
+                        "def": {
+                          "description": "DEF status of Noelle.",
+                          "type": "integer",
+                          "minimum": 0,
+                          "default": 0
+                        }
+                      },
+                      "required": [
+                        "activated",
+                        "def"
+                      ]
+                    }
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "noelle"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "title": "Diluc",
+          "properties": {
+            "diluc": {
+              "type": "object",
+              "title": "Diluc",
+              "properties": {
+                "a4": {
+                  "type": "object",
+                  "title": "Blessing of Phoenix",
+                  "description": "The <span style=\"color:#FF9999FF\">Pyro Infusion</span> provided by <span style=\"color:#FFD780FF\">Dawn</span> lasts for 4s longer. Additionally, Diluc gains 20% <span style=\"color:#FF9999FF\">Pyro DMG Bonus</span> during the duration of this effect.",
+                  "properties": {
+                    "activated": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Whether the effect is activated."
+                    }
+                  }
+                },
+                "c1": {
+                  "type": "object",
+                  "title": "Conviction",
+                  "description": "Diluc deals 15% more DMG to opponents whose HP is above 50%.",
+                  "properties": {
+                    "activated": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Whether the effect is activated."
+                    }
+                  }
+                },
+                "c2": {
+                  "type": "object",
+                  "title": "Searing Ember",
+                  "description": "When Diluc takes DMG, his ATK increases by 10% and his ATK SPD increases by 5%. Lasts for 10s.\nThis effect can stack up to 3 times and can only occur once every 1.5s.",
+                  "properties": {
+                    "stacks": {
+                      "type": "integer",
+                      "default": 0,
+                      "maximum": 3,
+                      "description": "The number of stacks."
+                    }
+                  }
+                },
+                "c4": {
+                  "type": "object",
+                  "title": "Flowing Flame",
+                  "description": "Casting <span style=\"color:#FFD780FF\">Searing Onslaught</span> in rhythm greatly increases damage dealt.\n2s after casting <span style=\"color:#FFD780FF\">Searing Onslaught</span>, casting the next Searing Onslaught in the combo deals 40% additional DMG. This effect lasts for 2s.",
+                  "properties": {
+                    "activated": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Whether the effect is activated."
+                    }
+                  }
+                },
+                "c6": {
+                  "type": "object",
+                  "title": "Flaming Sword, Nemesis of the Dark",
+                  "description": "After casting <span style=\"color:#FFD780FF\">Searing Onslaught</span>, the next 2 Normal Attacks within the next 6s will have their DMG and ATK SPD increased by 30%.\nAdditionally, Searing Onslaught will not interrupt the Normal Attack combo.",
+                  "properties": {
+                    "activated": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Whether the effect is activated."
+                    }
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "diluc"
           ],
           "additionalProperties": false
         }
@@ -317,7 +767,7 @@
                 "activated": {
                   "type": "boolean",
                   "default": false,
-                  "description": "Whether the effect is enabled."
+                  "description": "Whether the effect is activated."
                 }
               }
             },
@@ -355,7 +805,7 @@
                       "description": "Skill level of Grimheart",
                       "type": "integer",
                       "minimum": 1,
-                      "maximum": 13,
+                      "maximum": 14,
                       "default": 1
                     }
                   },
@@ -414,7 +864,7 @@
                 "activated": {
                   "type": "boolean",
                   "default": false,
-                  "description": "Whether the effect is enabled."
+                  "description": "Whether the effect is activated."
                 }
               }
             },
@@ -426,7 +876,7 @@
                 "activated": {
                   "type": "boolean",
                   "default": false,
-                  "description": "Whether the effect is enabled."
+                  "description": "Whether the effect is activated."
                 }
               }
             }
@@ -464,7 +914,7 @@
                 "activated": {
                   "type": "boolean",
                   "default": false,
-                  "description": "Whether the effect is enabled."
+                  "description": "Whether the effect is activated."
                 }
               }
             }
@@ -551,8 +1001,383 @@
             }
           },
           "additionalProperties": false
+        },
+        "bennett": {
+          "type": "object",
+          "title": "Bennett",
+          "description": "Bennett",
+          "properties": {
+            "burst": {
+              "type": "object",
+              "title": "Fantastic Voyage",
+              "description": "<p>Bennett performs a jumping attack that deals <span style=\"color: rgb(255, 153, 153)\">Pyro DMG</span>, creating an Inspiration Field.<br><br><span style=\"color: rgb(255, 215, 128)\">Inspiration Field</span><br>· If the health of a character within the AoE is equal to or falls below 70%, their health will continuously regenerate. The amount of HP restored scales off Bennett's Max HP.<br>· If the health of a character within the AoE is higher than 70%, they gain an ATK Bonus that is based on Bennett's Base ATK.<br>· Imbues characters within the AoE with <span style=\"color: rgb(255, 153, 153)\">Pyro</span>.<br><br><em>Benny's Adventure Team's adventures are always fraught with unexpected danger. However, Bennett is more inclined to call them \"journeys full of wonder, excitement, and beauty.\"</em></p>",
+              "properties": {
+                "within_aoe": {
+                  "type": "object",
+                  "description": "The buff that applies to characters within the burst AoE.",
+                  "properties": {
+                    "activated": {
+                      "description": "Whether the character is within the AoE.",
+                      "type": "boolean"
+                    },
+                    "base_atk": {
+                      "description": "Base ATK of Bennett.",
+                      "type": "integer",
+                      "minimum": 0,
+                      "default": 0
+                    },
+                    "skill_level": {
+                      "description": "Skill level of Fantastic Voyage",
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 14,
+                      "default": 1
+                    },
+                    "constellation": {
+                      "description": "Number of constellation of Bennett",
+                      "type": "integer",
+                      "mimimum": 0,
+                      "maximum": 6,
+                      "default": 0
+                    }
+                  },
+                  "required": [
+                    "activated",
+                    "base_atk",
+                    "skill_level",
+                    "constellation"
+                  ]
+                }
+              }
+            },
+            "c2": {
+              "type": "object",
+              "title": "Impasse Conqueror",
+              "description": "When Bennett's HP falls below 70%, his Energy Recharge is increased by 30%.",
+              "properties": {}
+            },
+            "c6": {
+              "type": "object",
+              "title": "Fire Ventures with Me",
+              "description": "Sword, Claymore, or Polearm-wielding characters inside <span style=\"color:#FFD780FF\">Fantastic Voyage</span>'s radius gain a 15% <span style=\"color:#FF9999FF\">Pyro DMG Bonus</span> and their weapons are infused with <span style=\"color:#FF9999FF\">Pyro</span>.",
+              "properties": {
+                "activated": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Whether the effect is activated."
+                }
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "jean": {
+          "type": "object",
+          "title": "Jean",
+          "description": "Jean",
+          "properties": {
+            "c1": {
+              "type": "object",
+              "title": "Spiraling Tempest",
+              "description": "Increases the pulling speed of <span style=\"color:#FFD780FF\">Gale Blade</span> after holding for more than 1s, and increases the DMG dealt by 40%.",
+              "properties": {}
+            },
+            "c4": {
+              "type": "object",
+              "title": "Lands of Dandelion",
+              "description": "Within the Field created by <span style=\"color:#FFD780FF\">Dandelion Breeze</span>, all opponents have their <span style=\"color:#80FFD7FF\">Anemo RES</span> decreased by 40%.",
+              "properties": {
+                "activated": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Whether the effect is activated."
+                }
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "sucrose": {
+          "type": "object",
+          "title": "Sucrose",
+          "description": "Sucrose",
+          "properties": {
+            "a1": {
+              "type": "object",
+              "title": "Catalyst Conversion",
+              "description": "When Sucrose triggers a Swirl reaction, all characters in the party with the matching element (excluding Sucrose) have their Elemental Mastery increased by 50 for 8s.",
+              "properties": {
+                "activated": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Whether the effect is activated."
+                }
+              }
+            },
+            "a4": {
+              "type": "object",
+              "title": "Mollis Favonius",
+              "description": "When <span style=\"color:#FFD780FF\">Astable Anemohypostasis Creation - 6308</span> or <span style=\"color:#FFD780FF\">Forbidden Creation - Isomer 75 / Type II</span> hits an opponent, increases all party members' (excluding Sucrose) Elemental Mastery by an amount equal to 20% of Sucrose's Elemental Mastery for 8s.",
+              "properties": {
+                "skill_hit": {
+                  "type": "object",
+                  "properties": {
+                    "activated": {
+                      "description": "Whether the enemy is hit by Elemental Skill or Elemental Burst.",
+                      "type": "boolean"
+                    },
+                    "elemental_mastery": {
+                      "description": "Elemental Mastery of Sucrose.",
+                      "type": "integer",
+                      "minimum": 0,
+                      "default": 0
+                    }
+                  },
+                  "required": [
+                    "activated",
+                    "elemental_mastery"
+                  ]
+                }
+              }
+            },
+            "c6": {
+              "type": "object",
+              "title": "Chaotic Entropy",
+              "description": "If <span style=\"color:#FFD780FF\">Forbidden Creation - Isomer 75 / Type II</span> triggers an Elemental Absorption, all party members gain a 20% Elemental DMG Bonus for the corresponding absorbed element during its duration.",
+              "properties": {
+                "absorbed_element": {
+                  "enum": [
+                    null,
+                    "pyro",
+                    "cyro",
+                    "hydro",
+                    "electro"
+                  ],
+                  "description": "The element type Forbidden Creation - Isomer 75 / Type II absorbed. If the element is not absorbed, this property is null."
+                }
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "rosaria": {
+          "type": "object",
+          "title": "Rosaria",
+          "description": "Rosaria",
+          "properties": {
+            "a1": {
+              "type": "object",
+              "title": "Regina Probationum",
+              "description": "When Rosaria strikes an opponent from behind using <span style=\"color:#FFD780FF\">Ravaging Confession</span>, Rosaria's CRIT Rate increases by 12% for 5s.",
+              "properties": {}
+            },
+            "a4": {
+              "type": "object",
+              "title": "Shadow Samaritan",
+              "description": "Casting <span style=\"color:#FFD780FF\">Rites of Termination</span> increases CRIT Rate of all nearby party members (except Rosaria herself) by 15% of Rosaria's CRIT Rate for 10s.\nCRIT Rate Bonus gained this way cannot exceed 15%.",
+              "properties": {
+                "burst_casted": {
+                  "type": "object",
+                  "properties": {
+                    "activated": {
+                      "description": "Whether Rites of Termination was casted.",
+                      "type": "boolean"
+                    },
+                    "crit_rate": {
+                      "description": "Crit. Rate of Rosaria.",
+                      "type": "number",
+                      "minimum": 5,
+                      "default": 5
+                    }
+                  },
+                  "required": [
+                    "activated",
+                    "crit_rate"
+                  ]
+                }
+              }
+            },
+            "c1": {
+              "type": "object",
+              "title": "Unholy Revelation",
+              "description": "When Rosaria deals a CRIT Hit, her ATK SPD increases by 10% and her Normal Attack DMG increases by 10% for 4s.",
+              "properties": {}
+            },
+            "c6": {
+              "type": "object",
+              "title": "Divine Retribution",
+              "description": "<span style=\"color:#FFD780FF\">Rites of Termination</span>'s attack decreases opponents' Physical RES by 20% for 10s.",
+              "properties": {
+                "activated": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Whether the effect is activated."
+                }
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "barbara": {
+          "type": "object",
+          "title": "Barbara",
+          "description": "Barbara",
+          "properties": {
+            "c2": {
+              "type": "object",
+              "title": "Vitality Burst",
+              "description": "Decreases the CD of <span style=\"color:#FFD780FF\">Let the Show Begin♪</span> by 15%.\nDuring the ability's duration, your active character gains a 15% <span style=\"color:#80C0FFFF\">Hydro DMG Bonus</span>.",
+              "properties": {
+                "activated": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Whether the effect is activated."
+                }
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "mona": {
+          "type": "object",
+          "title": "Mona",
+          "description": "Mona",
+          "properties": {
+            "burst": {
+              "type": "object",
+              "title": "Illusory Torrent",
+              "description": "<span style=\"color:#FFD780FF\">Alternate Sprint</span>\nMona cloaks herself within the water's flow, consuming Stamina to move rapidly.\n\nWhen under the effect of Illusory Torrent, Mona can move at high speed on water.\nApplies the <span style=\"color:#80C0FFFF\">Wet</span> status to nearby opponents when she reappears.\n\n<i>This is something that Mona can do, but her teacher cannot. Well, but it's not as if her teacher would pursue any matter concerning Hydro Visions anyway...</i>",
+              "properties": {
+                "burst_casted": {
+                  "type": "object",
+                  "properties": {
+                    "activated": {
+                      "description": "Whether Stellaris Phantasm was casted to enemy.",
+                      "type": "boolean"
+                    },
+                    "skill_level": {
+                      "description": "Skill level of Stellaris Phantasm.",
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 14,
+                      "default": 1
+                    }
+                  },
+                  "required": [
+                    "activated",
+                    "skill_level"
+                  ]
+                }
+              }
+            },
+            "a4": {
+              "type": "object",
+              "title": "Waterborne Destiny",
+              "description": "Increases Mona's <span style=\"color:#80C0FFFF\">Hydro DMG Bonus</span> by a degree equivalent to 20% of her Energy Recharge rate.",
+              "properties": {}
+            },
+            "c1": {
+              "type": "object",
+              "title": "Prophecy of Submersion",
+              "description": "<p>When any of your own party members hits an opponent affected by an Omen, the effects of <span style=\"color: rgb(128, 192, 255)\">Hydro-related Elemental Reactions</span> are enhanced for 8s:<br>· Electro-Charged DMG increases by 15%.<br>· Vaporize DMG increases by 15%.<br>· Hydro Swirl DMG increases by 15%.<br>· Frozen duration is extended by 15%.</p>",
+              "properties": {}
+            },
+            "c4": {
+              "type": "object",
+              "title": "Prophecy of Oblivion",
+              "description": "When any party member attacks an opponent affected by an Omen, their CRIT Rate is increased by 15%.",
+              "properties": {
+                "activated": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Whether the effect is activated."
+                }
+              }
+            },
+            "c6": {
+              "type": "object",
+              "title": "Rhetorics of Calamitas",
+              "description": "Upon entering <span style=\"color:#FFD780FF\">Illusory Torrent</span>, Mona gains a 60% increase to the DMG of her next Charged Attack per second of movement.\nA maximum DMG Bonus of 180% can be achieved in this manner. The effect lasts for no more than 8s.",
+              "properties": {}
+            }
+          },
+          "additionalProperties": false
+        },
+        "fischl": {
+          "type": "object",
+          "title": "Fischl",
+          "description": "Fischl",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "noelle": {
+          "type": "object",
+          "title": "Noelle",
+          "description": "Noelle",
+          "properties": {
+            "burst": {
+              "type": "object",
+              "title": "Sweeping Time",
+              "description": "Gathering the strength of stone around her weapon, Noelle strikes the opponents surrounding her within a large AoE, dealing <span style=\"color:#FFE699FF\">Geo DMG</span>.\nAfterwards, Noelle gains the following effects:\n·Larger attack AoE.\n·Converts attack DMG to <span style=\"color:#FFE699FF\">Geo DMG</span> that cannot be overridden by any other elemental infusion.\n·Increased ATK that scales based on her DEF.\n\n<i>Sometimes, it's not just dust that needs sweeping...</i>",
+              "properties": {}
+            },
+            "c2": {
+              "type": "object",
+              "title": "Combat Maid",
+              "description": "Decreases the Stamina Consumption of Noelle's Charged Attacks by 20% and increases her Charged Attack DMG by 15%.",
+              "properties": {}
+            },
+            "c6": {
+              "type": "object",
+              "title": "Must Be Spotless",
+              "description": "<span style=\"color:#FFD780FF\">Sweeping Time</span> increases Noelle's ATK by an additional 50% of her DEF.\nAdditionally, every opponent defeated during the skill's duration adds 1s to the duration, up to 10s.",
+              "properties": {}
+            }
+          },
+          "additionalProperties": false
+        },
+        "diluc": {
+          "type": "object",
+          "title": "Diluc",
+          "description": "Diluc",
+          "properties": {
+            "a4": {
+              "type": "object",
+              "title": "Blessing of Phoenix",
+              "description": "The <span style=\"color:#FF9999FF\">Pyro Infusion</span> provided by <span style=\"color:#FFD780FF\">Dawn</span> lasts for 4s longer. Additionally, Diluc gains 20% <span style=\"color:#FF9999FF\">Pyro DMG Bonus</span> during the duration of this effect.",
+              "properties": {}
+            },
+            "c1": {
+              "type": "object",
+              "title": "Conviction",
+              "description": "Diluc deals 15% more DMG to opponents whose HP is above 50%.",
+              "properties": {}
+            },
+            "c2": {
+              "type": "object",
+              "title": "Searing Ember",
+              "description": "When Diluc takes DMG, his ATK increases by 10% and his ATK SPD increases by 5%. Lasts for 10s.\nThis effect can stack up to 3 times and can only occur once every 1.5s.",
+              "properties": {}
+            },
+            "c4": {
+              "type": "object",
+              "title": "Flowing Flame",
+              "description": "Casting <span style=\"color:#FFD780FF\">Searing Onslaught</span> in rhythm greatly increases damage dealt.\n2s after casting <span style=\"color:#FFD780FF\">Searing Onslaught</span>, casting the next Searing Onslaught in the combo deals 40% additional DMG. This effect lasts for 2s.",
+              "properties": {}
+            },
+            "c6": {
+              "type": "object",
+              "title": "Flaming Sword, Nemesis of the Dark",
+              "description": "After casting <span style=\"color:#FFD780FF\">Searing Onslaught</span>, the next 2 Normal Attacks within the next 6s will have their DMG and ATK SPD increased by 30%.\nAdditionally, Searing Onslaught will not interrupt the Normal Attack combo.",
+              "properties": {}
+            }
+          },
+          "additionalProperties": false
         }
       }
     }
-  }
+  },
+  "required": [
+    "character"
+  ]
 }

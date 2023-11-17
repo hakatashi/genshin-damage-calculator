@@ -61,7 +61,7 @@ const getEffectSchema = (effect: Effect): JSONSchema7Definition => {
 		return {
 			type: 'boolean',
 			default: false,
-			description: effect.description ?? 'Whether the effect is enabled.',
+			description: effect.description ?? 'Whether the effect is activated.',
 		};
 	}
 
@@ -84,7 +84,7 @@ const getEffectSchema = (effect: Effect): JSONSchema7Definition => {
 	if (effect.type === 'custom') {
 		return {
 			type: 'object',
-			description: effect.description ?? 'The element of the buff. If the buff is not elemental, this property should be null.',
+			description: effect.description,
 			properties: effect.properties,
 			required: Object.keys(effect.properties),
 		};
@@ -170,7 +170,7 @@ for (const character of characterProperties) {
 		for (const [key, effect] of Object.entries(effectObject)) {
 			if (effect.target === 'self') {
 				buffSchema.properties![key] = getEffectSchema(effect);
-			} else if (effect.target === 'team' || effect.target === 'enemy') {
+			} else if (effect.target === 'team' || effect.target === 'team_excluding_self' || effect.target === 'enemy') {
 				teamBuffSchema.properties![key] = getEffectSchema(effect);
 			}
 		}

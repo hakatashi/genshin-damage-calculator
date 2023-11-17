@@ -1,3 +1,4 @@
+import type { Buffs } from './buffs.js';
 import type { Catalyze, Condition, Melt, Vaporize } from './condition.js';
 import { characterLevelMultipliers } from './data/levelMultipliers.js';
 
@@ -134,18 +135,14 @@ export const calculateDamage = (condition: Condition) => {
 		defMultiplier *
 		resMultiplier;
 
-	console.log({
-		finalBaseDamage,
-		damageBonus,
-		critBonus,
-		vaporizeBonus ,
-		meltBonus ,
-		defMultiplier ,
-		resMultiplier,
-	})
-
 	return {damage};
 };
+
+export const calculateCondition = (buffs: Buffs) => {
+	if ('venti' in buffs.character) {
+		console.log(buffs.character.venti.c2);
+	}
+}
 
 export * from './condition.js';
 export * from './data/levelMultipliers.js';
